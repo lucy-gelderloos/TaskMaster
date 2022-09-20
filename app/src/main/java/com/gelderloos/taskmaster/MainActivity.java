@@ -24,6 +24,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(goToAddTaskActivity);
             }});
 
+    Button allTasksButton = MainActivity.this.findViewById(R.id.mainActivityButtonAllTasks);
+        allTasksButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToAllTasksActivity = new Intent(MainActivity.this, AllTasksActivity.class);
+                // Launch the intent
+                startActivity(goToAllTasksActivity);
+            }});
+
 //    public void submitTask(View view) {
 //        Intent intent = new Intent(this, AddTaskActivity.class);
 //        EditText editTextTitle = (EditText) findViewById(R.id.editTextTextTaskTitle);
