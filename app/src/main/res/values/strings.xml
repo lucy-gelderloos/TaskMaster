@@ -7,4 +7,11 @@
     <string name="edit_task_description">Enter a description</string>
     <string name="submit_new_task">Submit</string>
     <string name="task_submitted">Submitted!</string>
+    <string name="task_1_label">Task 1</string>
+    <string name="task_2_label">Task 2</string>
+    <string name="task_3_label">Task 3</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="change_username_hint">Enter new username</string>
+    <string name="change_username_button">Submit</string>
+    <string name="settings_label">Settings</string>
 </resources>

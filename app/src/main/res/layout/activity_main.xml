@@ -7,33 +7,34 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewMainActivityUserTasks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/my_tasks"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonMainActivityTask1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.12" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/mainActivityButtonAddTask"
+        android:id="@+id/buttonMainActivityAddTask"
         android:layout_width="164dp"
         android:layout_height="46dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="16dp"
-        android:onClick="addTask"
+        android:onClick="addTaskButton"
         android:text="@string/add_task"
         android:textColor="@color/orange"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/mainActivityButtonAllTasks"
+        app:layout_constraintEnd_toStartOf="@+id/buttonMainActivityAllTasks"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/mainActivityButtonAllTasks"
+        android:id="@+id/buttonMainActivityAllTasks"
         android:layout_width="164dp"
         android:layout_height="46dp"
         android:layout_marginEnd="16dp"
@@ -42,5 +43,52 @@
         android:textColor="@color/orange"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/buttonMainActivityTask1"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="166dp"
+        android:onClick="taskDetailButton"
+        android:text="@string/task_1_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMainActivityUserTasks" />
+
+    <Button
+        android:id="@+id/buttonMainActivityTask2"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="32dp"
+        android:onClick="taskDetailButton"
+        android:text="@string/task_2_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonMainActivityTask1" />
+
+    <Button
+        android:id="@+id/buttonMainActivityTask3"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="32dp"
+        android:onClick="taskDetailButton"
+        android:text="@string/task_3_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonMainActivityTask2" />
+
+    <Button
+        android:id="@+id/buttonMainActivityToSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="settingsButton"
+        android:text="@string/settings_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
