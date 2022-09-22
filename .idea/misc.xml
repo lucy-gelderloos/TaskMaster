@@ -4,9 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/lucyg/AndroidStudioProjects/TaskMaster/app/src/main/res/layout/activity_add_task.xml" value="0.165" />
-        <entry key="..\:/Users/lucyg/AndroidStudioProjects/TaskMaster/app/src/main/res/layout/activity_main.xml" value="0.335" />
+        <entry key="..\:/Users/lucyg/AndroidStudioProjects/TaskMaster/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/lucyg/AndroidStudioProjects/TaskMaster/app/src/main/res/layout/activity_settings.xml" value="0.25" />
         <entry key="..\:/Users/lucyg/AndroidStudioProjects/TaskMaster/app/src/main/res/layout/activity_task_detail.xml" value="0.1611799914493373" />
+        <entry key="..\:/Users/lucyg/AndroidStudioProjects/TaskMaster/app/src/main/res/layout/fragment_task.xml" value="0.24629418472063855" />
       </map>
     </option>
   </component>
