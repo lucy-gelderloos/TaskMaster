@@ -2,6 +2,14 @@
 
 A task management app
 
+## Day 3
+
+- Main page uses recycler view to list all tasks on scroll
+- Clicking on any task in the recycler view leads to the task detail page with that task's details filled in
+
+![Main page day 3](./screenshots/main-day-3.png)
+![Task detail page day 3](./screenshots/task-detail-day-3.png)
+
 ## Day 2
 
 - Main page title updates dynamically with new username

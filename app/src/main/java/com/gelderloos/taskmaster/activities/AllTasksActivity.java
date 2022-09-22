@@ -1,8 +1,10 @@
-package com.gelderloos.taskmaster;
+package com.gelderloos.taskmaster.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.gelderloos.taskmaster.R;
 
 public class AllTasksActivity extends AppCompatActivity {
 
