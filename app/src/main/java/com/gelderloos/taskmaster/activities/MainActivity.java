@@ -3,26 +3,34 @@ package com.gelderloos.taskmaster.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.gelderloos.taskmaster.R;
 import com.gelderloos.taskmaster.adapters.TaskListRecyclerViewAdapter;
+import com.gelderloos.taskmaster.database.TaskListDatabase;
 import com.gelderloos.taskmaster.models.Task;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String DATABASE_NAME = "task_list_db";
     SharedPreferences preferences;
     TextView userTasks;
     String username;
+    TaskListDatabase taskListDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +39,16 @@ public class MainActivity extends AppCompatActivity {
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
+        taskListDatabase = Room.databaseBuilder(
+                getApplicationContext(), //context is whole application so only one instance of database runs
+                TaskListDatabase.class,
+                DATABASE_NAME
+        )
+                .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
+                .build();
+
+        taskListDatabase.taskDao().findAll();
 
         Button addTaskButton = MainActivity.this.findViewById(R.id.buttonMainActivityAddTask);
         addTaskButton.setOnClickListener(new View.OnClickListener() {
@@ -53,18 +71,31 @@ public class MainActivity extends AppCompatActivity {
         });
 
         setUpTaskListRecyclerView();
+        setUpAddTaskButton();
+
     }
+
+    private void setUpAddTaskButton() {
+        findViewById(R.id.buttonMainActivityAddTask).setOnClickListener(view -> {
+            Intent goToAddTaskActivity = new Intent(MainActivity.this, AddTaskActivity.class);
+            startActivity(goToAddTaskActivity);
+        });
+    }
+
+//    private void setUpTaskDetailButton(){
+//        findViewById(R.id.buttonMainActivityTaskDetail).setOnClickListener(view -> {
+//            Intent goToTaskDetailActivity = new Intent(MainActivity.this, TaskDetailActivity.class);
+//            startActivity(goToPokemanActivity);
+//        });
+//    }
+
 
         private void setUpTaskListRecyclerView(){
             RecyclerView taskListRecyclerView = findViewById(R.id.recyclerMainActivityTaskRecyclerView);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
             taskListRecyclerView.setLayoutManager(layoutManager);
 
-            List<Task> tasks = new ArrayList<>();
-
-            tasks.add(new Task("title of test task 1", "body of test task 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
-            tasks.add(new Task("title of test task 2", "body of test task 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
-            tasks.add(new Task("title of test task 3", "body of test task 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
+            List<Task> tasks = taskListDatabase.taskDao().findAll();
 
             TaskListRecyclerViewAdapter adapter = new TaskListRecyclerViewAdapter(tasks, this);
             taskListRecyclerView.setAdapter(adapter);
@@ -93,9 +124,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(goToSettingsActivity);
     }
 
-    public void addTaskButton(View view){
-        Intent goToAddTaskActivity = new Intent(this, SettingsActivity.class);
-        startActivity(goToAddTaskActivity);
-    }
+//    public void addTaskButton(View view){
+//        Intent goToAddTaskActivity = new Intent(this, SettingsActivity.class);
+//        startActivity(goToAddTaskActivity);
+//    }
 
     }

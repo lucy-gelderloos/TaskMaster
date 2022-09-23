@@ -43,7 +43,7 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
         taskFragmentTaskBodyTextView.setText(taskBody);
 
 //        TextView taskFragmentTaskStateTextView = holder.itemView.findViewById(R.id.TaskFragmentState);
-//        Task.State state = tasks.get(position).getState();
+//        String state = tasks.get(position).getState().toString();
 
         View taskViewHolder = holder.itemView;
         taskViewHolder.setOnClickListener(view -> {
