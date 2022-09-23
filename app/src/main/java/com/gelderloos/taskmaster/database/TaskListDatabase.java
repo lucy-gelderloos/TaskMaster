@@ -11,7 +11,5 @@ import com.gelderloos.taskmaster.models.Task;
 @TypeConverters({TaskListDatabaseConverters.class})
 @Database(entities = {Task.class}, version = 1)
 public abstract class TaskListDatabase extends RoomDatabase {
-    public TaskDao taskDao() {
-        return null;
-    }
+    public abstract TaskDao taskDao();
 }
