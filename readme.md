@@ -2,6 +2,15 @@
 
 A task management app
 
+## Day 4
+
+- Implemented Room database to store tasks
+- "Add Task" button on main page adds task to database
+- Recycler view on main page displays all tasks in database
+
+![Main page day 4](./screenshots/main-day-4.png)
+![Task detail page day 4](./screenshots/task-detail-day-4.png)
+
 ## Day 3
 
 - Main page uses recycler view to list all tasks on scroll
