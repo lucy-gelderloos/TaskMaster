@@ -24,7 +24,6 @@
         android:layout_marginStart="18dp"
         android:onClick="addTaskButton"
         android:text="@string/add_task"
-        android:textColor="@color/orange"
         app:layout_constraintBottom_toBottomOf="@+id/buttonMainActivityAllTasks"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buttonMainActivityAllTasks" />
@@ -36,7 +35,6 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/all_tasks"
-        android:textColor="@color/orange"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
