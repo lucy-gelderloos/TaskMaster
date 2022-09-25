@@ -10,20 +10,32 @@
         android:id="@+id/editTextSettingsEnterUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="39dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/change_username_hint"
         app:layout_constraintEnd_toStartOf="@+id/buttonSettingsChangeUsername"
-        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="159dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
         android:id="@+id/buttonSettingsChangeUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="36dp"
+        android:layout_marginEnd="2dp"
         android:text="@string/change_username_button"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editTextSettingsEnterUsername"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="156dp" />
+        app:layout_constraintStart_toEndOf="@+id/editTextSettingsEnterUsername" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="96dp"
+        android:text="@string/change_username_hint"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -26,6 +27,12 @@ public class SettingsActivity extends AppCompatActivity {
         if(!userName.isEmpty()){
             EditText userNameEdited = ((EditText)findViewById(R.id.editTextSettingsEnterUsername));
             userNameEdited.setText(userName);
+            userNameEdited.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View view, boolean b) {
+                    userNameEdited.setText("");
+                }
+            });
         }
         setUpSubmitButton();
     }
