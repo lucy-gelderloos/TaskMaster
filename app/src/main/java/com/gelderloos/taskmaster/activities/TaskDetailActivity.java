@@ -15,6 +15,7 @@ import java.util.List;
 public class TaskDetailActivity extends AppCompatActivity {
     public static final String TASK_TITLE_EXTRA_TAG = "taskTitle";
     public static final String TASK_BODY_EXTRA_TAG = "taskBody";
+    public static final String TASK_STATE_EXTRA_TAG = "taskState";
     public static final String DATABASE_NAME = "task_list_db";
     TaskListDatabase taskListDatabase;
     List<Task> tasks = null;
@@ -29,7 +30,10 @@ public class TaskDetailActivity extends AppCompatActivity {
         TextView titleText = findViewById(R.id.textViewTaskDetailTitle);
         titleText.setText(title);
         String body = intent.getStringExtra("taskBody");
-        TextView bodyText = findViewById(R.id.textViewTaskDetailDescription);
+        TextView bodyText = findViewById(R.id.textViewTaskDetailBody);
         bodyText.setText(body);
+        String state = intent.getStringExtra("taskState");
+        TextView taskState = findViewById(R.id.textViewTaskDetailState);
+        taskState.setText("Status: " + state);
     }
 }

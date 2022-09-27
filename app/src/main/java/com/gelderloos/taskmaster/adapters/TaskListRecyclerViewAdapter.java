@@ -42,6 +42,9 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
         String taskBody = tasks.get(position).getBody();
         taskFragmentTaskBodyTextView.setText(taskBody);
 
+        String taskState = tasks.get(position).getState().toString();
+
+
 //        TextView taskFragmentTaskStateTextView = holder.itemView.findViewById(R.id.TaskFragmentState);
 //        String state = tasks.get(position).getState().toString();
 
@@ -50,6 +53,7 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
             Intent goToTaskDetail = new Intent(callingActivity, TaskDetailActivity.class);
             goToTaskDetail.putExtra(TaskDetailActivity.TASK_TITLE_EXTRA_TAG, taskTitle);
             goToTaskDetail.putExtra(TaskDetailActivity.TASK_BODY_EXTRA_TAG, taskBody);
+            goToTaskDetail.putExtra(TaskDetailActivity.TASK_STATE_EXTRA_TAG, taskState);
             callingActivity.startActivity(goToTaskDetail);
         });
     }
