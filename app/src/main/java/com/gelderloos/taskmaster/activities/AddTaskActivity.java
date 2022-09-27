@@ -38,8 +38,26 @@ public class AddTaskActivity extends AppCompatActivity {
                 .build();
 
 
+//        setUpEditTexts();
         setUpTypeSpinner();
         setUpSubmitButton();
+    }
+
+    private void setUpEditTexts() {
+        EditText enterTaskTitle = ((EditText)findViewById(R.id.editTextAddTaskTaskTitle));
+        EditText enterTaskBody = ((EditText)findViewById(R.id.editTextAddTaskTaskBody));
+        enterTaskTitle.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                enterTaskTitle.setText("");
+            }
+            });
+        enterTaskBody.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                enterTaskBody.setText("");
+            }
+            });
     }
 
     private void setUpTypeSpinner(){
