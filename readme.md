@@ -2,6 +2,18 @@
 
 A task management app
 
+## Day 5
+
+- Styled app
+- Added tests for main page UI elements, change username function, and task creation and detail page
+- Added state to task detail view
+
+![Main page day 5](./screenshots/main-day-5.png)
+![Add task page day 5](./screenshots/add-task-day-5.png)
+![Settings page day 5](./screenshots/settings-day-5.png)
+![Task detail page day 5](./screenshots/task-detail-day-5.png)
+
+
 ## Day 4
 
 - Implemented Room database to store tasks
