@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.amplifyframework.datastore.generated.model.Task;
 import com.gelderloos.taskmaster.R;
-import com.gelderloos.taskmaster.models.Task;
 
 import java.util.List;
 

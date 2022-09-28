@@ -24,3 +24,32 @@ query ListTodos(
     nextToken
   }
 }
+query GetTask($id: ID!) {
+  getTask(id: $id) {
+    id
+    taskTitle
+    taskBody
+    taskDateCreated
+    taskStatus
+    createdAt
+    updatedAt
+  }
+}
+query ListTasks(
+  $filter: ModelTaskFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTasks(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      taskTitle
+      taskBody
+      taskDateCreated
+      taskStatus
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
