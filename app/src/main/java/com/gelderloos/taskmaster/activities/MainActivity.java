@@ -3,26 +3,17 @@ package com.gelderloos.taskmaster.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.gelderloos.taskmaster.R;
 import com.gelderloos.taskmaster.adapters.TaskListRecyclerViewAdapter;
-import com.gelderloos.taskmaster.database.TaskListDatabase;
 import com.gelderloos.taskmaster.models.Task;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences preferences;
     TextView userTasks;
     String username;
-    TaskListDatabase taskListDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        taskListDatabase = Room.databaseBuilder(
-                        getApplicationContext(), //context is whole application so only one instance of database runs
-                        TaskListDatabase.class,
-                        DATABASE_NAME
-                )
-                .allowMainThreadQueries()
-                .fallbackToDestructiveMigration()
-                .build();
-
-        taskListDatabase.taskDao().findAllTasks();
+//        taskListDatabase.taskDao().findAllTasks();
 
         setUpTaskListRecyclerView();
         setUpAddTaskButton();
@@ -82,10 +63,10 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         taskListRecyclerView.setLayoutManager(layoutManager);
 
-        List<Task> tasks = taskListDatabase.taskDao().findAllTasks();
+//        List<Task> tasks = taskListDatabase.taskDao().findAllTasks();
 
-        TaskListRecyclerViewAdapter adapter = new TaskListRecyclerViewAdapter(tasks, this);
-        taskListRecyclerView.setAdapter(adapter);
+//        TaskListRecyclerViewAdapter adapter = new TaskListRecyclerViewAdapter(tasks, this);
+//        taskListRecyclerView.setAdapter(adapter);
     }
 
     @Override

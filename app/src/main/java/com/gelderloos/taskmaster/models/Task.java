@@ -3,15 +3,11 @@ package com.gelderloos.taskmaster.models;
 import static java.util.Objects.isNull;
 
 import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity
 public class Task {
 
-    @PrimaryKey(autoGenerate = true)
     public Long id;
     private String title;
     private String body;

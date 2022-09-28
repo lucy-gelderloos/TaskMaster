@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.gelderloos.taskmaster.R;
-import com.gelderloos.taskmaster.database.TaskListDatabase;
 import com.gelderloos.taskmaster.models.Task;
 
 import java.util.List;
@@ -17,7 +16,6 @@ public class TaskDetailActivity extends AppCompatActivity {
     public static final String TASK_BODY_EXTRA_TAG = "taskBody";
     public static final String TASK_STATE_EXTRA_TAG = "taskState";
     public static final String DATABASE_NAME = "task_list_db";
-    TaskListDatabase taskListDatabase;
     List<Task> tasks = null;
 
     @Override
