@@ -13,9 +13,11 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.NewTask;
+import com.amplifyframework.datastore.generated.model.Team;
 import com.gelderloos.taskmaster.R;
 import com.gelderloos.taskmaster.adapters.TaskListRecyclerViewAdapter;
 
@@ -24,6 +26,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public static final String DATABASE_NAME = "task_list_db";
+    private static final String TAG = "MainActivity";
     SharedPreferences preferences;
     TextView userTasks;
     String username;
@@ -42,6 +45,37 @@ public class MainActivity extends AppCompatActivity {
         setUpAddTaskButton();
         setUpAllTasksButton();
         setUpSettingsButton();
+
+        //         Hardcoding Teams
+
+        Team newTeamJava = Team.builder()
+                .teamName("Team Java")
+                .build();
+        Amplify.API.mutate(
+                ModelMutation.create(newTeamJava),
+                success -> Log.i(TAG, "Team added"),
+                failure -> Log.i(TAG, "Didn't work")
+        );
+
+        Team newTeamHTML = Team.builder()
+                .teamName("HTML Team")
+                .build();
+        Amplify.API.mutate(
+                ModelMutation.create(newTeamHTML),
+                success -> Log.i(TAG, "Team added"),
+                failure -> Log.i(TAG, "Team not added")
+        );
+
+        Team newTeamCSS = Team.builder()
+                .teamName("CSS Team")
+                .build();
+        Amplify.API.mutate(
+                ModelMutation.create(newTeamCSS),
+                success -> Log.i(TAG, "Team added"),
+                failure -> Log.i(TAG, "Team not added")
+        );
+        
+        
     }
 
     private void setUpAddTaskButton() {

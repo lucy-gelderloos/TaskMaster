@@ -35,6 +35,16 @@ query GetNewTask($id: ID!) {
     taskBody
     taskDateCreated
     taskStatus
+    teamID
+    team {
+      id
+      teamName
+      tasks {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -51,6 +61,52 @@ query ListNewTasks(
       taskBody
       taskDateCreated
       taskStatus
+      teamID
+      team {
+        id
+        teamName
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetTeam($id: ID!) {
+  getTeam(id: $id) {
+    id
+    teamName
+    tasks {
+      items {
+        id
+        taskTitle
+        taskBody
+        taskDateCreated
+        taskStatus
+        teamID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListTeams(
+  $filter: ModelTeamFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTeams(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      teamName
+      tasks {
+        nextToken
+      }
       createdAt
       updatedAt
     }
