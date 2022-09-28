@@ -16,6 +16,14 @@ type NewTask @model @auth(rules: [{allow: public}]) {
     taskBody: String
     taskDateCreated: AWSDateTime!
     taskStatus: TaskStatusEnum
+    teamID: ID! @index(name: "byTeam")
+    team: Team @belongsTo(fields: ["teamID"])
+}
+
+type Team @model @auth(rules: [{allow: public}]) {
+    id: ID!
+    teamName: String!
+    tasks: [NewTask] @hasMany(indexName: "byTeam", fields: ["id"])
 }
 
 enum TaskStatusEnum {

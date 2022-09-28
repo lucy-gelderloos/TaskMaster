@@ -20,7 +20,7 @@ import com.gelderloos.taskmaster.R;
 import java.util.Date;
 
 public class AddTaskActivity extends AppCompatActivity {
-    public static final String Tag = "AddPokemanActivity";
+    public static final String Tag = "AddTaskActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
