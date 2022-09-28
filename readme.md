@@ -2,6 +2,15 @@
 
 A task management app
 
+## Day 6
+
+- Replaced Room database with AWS Amplify; all functions work
+- Tests do not work - they keep crashing the emulator's system. I think it's related to some of the new dependencies.
+
+![Main page day 6](./screenshots/main-day-6.png)
+![Add task page day 6](./screenshots/add-task-day-6.png)
+![Task detail page day 6](./screenshots/task-detail-day-6.png)
+
 ## Day 5
 
 - Styled app
