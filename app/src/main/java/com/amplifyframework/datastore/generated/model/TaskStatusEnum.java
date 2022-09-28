@@ -4,7 +4,6 @@ package com.amplifyframework.datastore.generated.model;
 public enum TaskStatusEnum {
   New,
   Assigned,
-  In,
-  progress,
+  Active,
   Complete
 }

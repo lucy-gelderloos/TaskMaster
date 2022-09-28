@@ -68,7 +68,7 @@ public class AddTaskActivity extends AppCompatActivity {
             String taskBody = ((EditText) findViewById(R.id.editTextAddTaskTaskBody)).getText().toString();
             String currentDateString = com.amazonaws.util.DateUtils.formatISO8601Date(new Date());
 
-            Task newTask = Task.builder()
+            NewTask newTask = NewTask.builder()
                     .taskTitle(taskTitle)
                     .taskDateCreated(new Temporal.DateTime(currentDateString))
                     .taskBody(taskBody)

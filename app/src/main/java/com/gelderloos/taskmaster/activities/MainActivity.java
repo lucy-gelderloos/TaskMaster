@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.generated.model.Task;
+import com.amplifyframework.datastore.generated.model.NewTask;
 import com.gelderloos.taskmaster.R;
 import com.gelderloos.taskmaster.adapters.TaskListRecyclerViewAdapter;
 
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     TextView userTasks;
     String username;
 
-    List<Task> tasks = null;
+    List<NewTask> tasks = null;
     TaskListRecyclerViewAdapter adapter;
 
     @Override
@@ -82,11 +82,11 @@ public class MainActivity extends AppCompatActivity {
 
         Amplify.API.query(
                 // list gives ALL items, get() gives you 1
-                ModelQuery.list(Task.class),
+                ModelQuery.list(NewTask.class),
                 successResponse -> {
                     Log.i(Tag, "Tasks read successfully!");
                     tasks.clear();
-                    for (Task dataBaseTask : successResponse.getData()){
+                    for (NewTask dataBaseTask : successResponse.getData()){
                         tasks.add(dataBaseTask);
                     }
                     runOnUiThread(() -> {
