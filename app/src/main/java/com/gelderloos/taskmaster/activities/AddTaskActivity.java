@@ -20,58 +20,51 @@ import com.amplifyframework.core.model.temporal.Temporal;
 import com.amplifyframework.datastore.generated.model.*;
 import com.gelderloos.taskmaster.R;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class AddTaskActivity extends AppCompatActivity {
     public static final String Tag = "AddTaskActivity";
     SharedPreferences preferences;
-    String userTeamString;
-    Team userTeam;
+    Team selectedTeam;
+    List<String> teamNames = null;
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        userTeamString = preferences.getString(SettingsActivity.USER_TEAM_TAG,null);
+//        userTeamString = preferences.getString(SettingsActivity.USER_TEAM_TAG,null);
 
+        teamNames = new ArrayList<>();
+
+//        setUpEditTexts();
+        setUpTypeSpinner();
+        setUpTeamSpinner();
+        setUpSubmitButton();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         Amplify.API.query(
                 // list gives ALL items, get() gives you 1
                 ModelQuery.list(Team.class),
                 successResponse -> {
+                    Log.i(Tag, "Teams read successfully!");
+                    teamNames.clear();
                     for (Team dataBaseTeam : successResponse.getData()){
-                        if(dataBaseTeam.getTeamName().equals(userTeamString)) {
-                            userTeam = dataBaseTeam;
-                        }
+                        teamNames.add(dataBaseTeam.getTeamName());
                     }
                     runOnUiThread(() -> {
-
+                        adapter.notifyDataSetChanged();
                     });
                 },
                 failureResponse -> Log.i(Tag, "Did not read Tasks successfully")
         );
-
-//        setUpEditTexts();
-        setUpTypeSpinner();
-        setUpSubmitButton();
-    }
-
-    private void setUpEditTexts() {
-        EditText enterTaskTitle = ((EditText)findViewById(R.id.editTextAddTaskTaskTitle));
-        EditText enterTaskBody = ((EditText)findViewById(R.id.editTextAddTaskTaskBody));
-        enterTaskTitle.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                enterTaskTitle.setText("");
-            }
-            });
-        enterTaskBody.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                enterTaskBody.setText("");
-            }
-            });
     }
 
     private void setUpTypeSpinner(){
@@ -83,22 +76,43 @@ public class AddTaskActivity extends AppCompatActivity {
         ));
     }
 
+    private void setUpTeamSpinner(){
+        Spinner taskTeamSpinner = findViewById(R.id.spinnerAddTaskTeam);
+        adapter = new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+                teamNames);
+        taskTeamSpinner.setAdapter(adapter);
+    }
+
     private void setUpSubmitButton(){
         Spinner taskStateSpinner = findViewById(R.id.spinnerAddTaskTaskState);
         Button saveNewTaskButton = findViewById(R.id.buttonAddTaskSubmit);
+        Spinner teamSpinner = findViewById(R.id.spinnerAddTaskTeam);
         saveNewTaskButton.setOnClickListener(view -> {
             String taskTitle = ((EditText) findViewById(R.id.editTextAddTaskTaskTitle)).getText().toString();
             String taskBody = ((EditText) findViewById(R.id.editTextAddTaskTaskBody)).getText().toString();
             String currentDateString = com.amazonaws.util.DateUtils.formatISO8601Date(new Date());
 
+            Amplify.API.query(
+                    ModelQuery.list(Team.class),
+                    successResponse -> {
+                        for (Team dataBaseTeam : successResponse.getData()){
+                            if(dataBaseTeam.getTeamName().equals(teamSpinner.getSelectedItem())) {
+                                selectedTeam = dataBaseTeam;
+                            }
+                        }
+                        runOnUiThread(() -> {
 
+                        });
+                    },
+                    failureResponse -> Log.i(Tag, "Did not read Tasks successfully")
+            );
 
             Task newTask = Task.builder()
                     .taskTitle(taskTitle)
                     .taskDateCreated(new Temporal.DateTime(currentDateString))
                     .taskBody(taskBody)
                     .taskStatus((TaskStatusEnum) taskStateSpinner.getSelectedItem())
-                    .team(userTeam)
+                    .team(selectedTeam)
                     .build();
 
             Amplify.API.mutate(
@@ -109,7 +123,6 @@ public class AddTaskActivity extends AppCompatActivity {
 
             Intent goToMainActivity = new Intent(AddTaskActivity.this, MainActivity.class);
             startActivity(goToMainActivity);
-
         });
     }
 
