@@ -2,6 +2,18 @@
 
 A task management app
 
+## Day 7
+
+- Added Team model
+- User can change their team in the Settings page
+- Team can be associated with task on creation
+- Only tasks associated with the user's team will display on the main page
+
+![Main page day 7](./screenshots/main-day-7.png)
+![Settings page day 7](./screenshots/settings-day-7.png)
+![Add task page day 7](./screenshots/add-task-day-7.png)
+![Task detail page day 7](./screenshots/task-detail-day-7.png)
+
 ## Day 6
 
 - Replaced Room database with AWS Amplify; all functions work

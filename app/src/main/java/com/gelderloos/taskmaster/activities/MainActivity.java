@@ -13,9 +13,11 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.generated.model.NewTask;
+import com.amplifyframework.core.model.temporal.Temporal;
+import com.amplifyframework.datastore.generated.model.*;
 import com.gelderloos.taskmaster.R;
 import com.gelderloos.taskmaster.adapters.TaskListRecyclerViewAdapter;
 
@@ -24,11 +26,14 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public static final String DATABASE_NAME = "task_list_db";
+    private static final String TAG = "MainActivity";
     SharedPreferences preferences;
-    TextView userTasks;
+    TextView userTasksTV;
+    TextView userTeamTV;
     String username;
+    String userTeam;
 
-    List<NewTask> tasks = null;
+    List<Task> tasks = null;
     TaskListRecyclerViewAdapter adapter;
 
     @Override
@@ -42,6 +47,35 @@ public class MainActivity extends AppCompatActivity {
         setUpAddTaskButton();
         setUpAllTasksButton();
         setUpSettingsButton();
+
+        //         Hardcoding Teams
+
+//        Team newTeamJava = Team.builder()
+//                .teamName("Team Java")
+//                .build();
+//        Amplify.API.mutate(
+//                ModelMutation.create(newTeamJava),
+//                success -> Log.i(TAG, "Team added"),
+//                failure -> Log.i(TAG, "Didn't work")
+//        );
+//
+//        Team newTeamHTML = Team.builder()
+//                .teamName("HTML Team")
+//                .build();
+//        Amplify.API.mutate(
+//                ModelMutation.create(newTeamHTML),
+//                success -> Log.i(TAG, "Team added"),
+//                failure -> Log.i(TAG, "Team not added")
+//        );
+//
+//        Team newTeamCSS = Team.builder()
+//                .teamName("CSS Team")
+//                .build();
+//        Amplify.API.mutate(
+//                ModelMutation.create(newTeamCSS),
+//                success -> Log.i(TAG, "Team added"),
+//                failure -> Log.i(TAG, "Team not added")
+//        );
     }
 
     private void setUpAddTaskButton() {
@@ -69,9 +103,6 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView taskListRecyclerView = findViewById(R.id.recyclerMainActivityTaskRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         taskListRecyclerView.setLayoutManager(layoutManager);
-
-//        List<Task> tasks = taskListDatabase.taskDao().findAllTasks();
-
         adapter = new TaskListRecyclerViewAdapter(tasks, this);
         taskListRecyclerView.setAdapter(adapter);
     }
@@ -82,12 +113,16 @@ public class MainActivity extends AppCompatActivity {
 
         Amplify.API.query(
                 // list gives ALL items, get() gives you 1
-                ModelQuery.list(NewTask.class),
+                ModelQuery.list(Task.class),
                 successResponse -> {
                     Log.i(Tag, "Tasks read successfully!");
                     tasks.clear();
-                    for (NewTask dataBaseTask : successResponse.getData()){
-                        tasks.add(dataBaseTask);
+                    for (Task dataBaseTask : successResponse.getData()){
+                        if(dataBaseTask.getTeam().getTeamName().equals(userTeam)) {
+                            tasks.add(dataBaseTask);
+                        }
+//                        tasks.add(dataBaseTask);
+
                     }
                     runOnUiThread(() -> {
                         adapter.notifyDataSetChanged();
@@ -97,8 +132,11 @@ public class MainActivity extends AppCompatActivity {
         );
 
         username = preferences.getString(SettingsActivity.USER_NAME_TAG, "User");
-        userTasks = (TextView) findViewById(R.id.textViewMainActivityUserTasks);
+        userTeam = preferences.getString(SettingsActivity.USER_TEAM_TAG, "Join a team to see your tasks");
+        userTasksTV = (TextView) findViewById(R.id.textViewMainActivityUserTasks);
+        userTeamTV = (TextView) findViewById(R.id.textViewMainActivityUserTeam);
         // TODO: convert below string to resource string
-        userTasks.setText(username + "'s Tasks:");
+        userTasksTV.setText(username + "'s Tasks:");
+        userTeamTV.setText(userTeam);
     }
 }

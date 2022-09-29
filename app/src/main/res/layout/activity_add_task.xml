@@ -6,36 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".activities.AddTaskActivity">
 
+    <TextView
+        android:id="@+id/textViewAddTaskTeamSpinnerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="Team"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAddTaskTaskState" />
+
+    <TextView
+        android:id="@+id/textViewAddTaskStatusSpinnerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="16dp"
+        android:text="Task Status"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAddTaskTaskBody" />
+
     <EditText
         android:id="@+id/editTextAddTaskTaskBody"
-        android:layout_width="372dp"
-        android:layout_height="123dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="17dp"
+        android:layout_width="369dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="21dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:text="@string/edit_task_description"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerAddTaskTaskState"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextAddTaskTaskTitle" />
 
     <EditText
         android:id="@+id/editTextAddTaskTaskTitle"
-        android:layout_width="375dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="369dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="21dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/edit_task_title"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/editTextAddTaskTaskBody"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewAddTaskPageLabel" />
 
@@ -43,46 +62,54 @@
         android:id="@+id/buttonAddTaskSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginStart="263dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginBottom="86dp"
         android:text="@string/submit_new_task"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textViewTaskSubmitted"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerAddTaskTaskState" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAddTaskTeam" />
 
     <TextView
         android:id="@+id/textViewTaskSubmitted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        tools:layout_editor_absoluteX="205dp" />
+        tools:layout_editor_absoluteX="206dp" />
 
     <Spinner
         android:id="@+id/spinnerAddTaskTaskState"
-        android:layout_width="375dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAddTaskSubmit"
+        android:layout_width="369dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="21dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAddTaskStatusSpinnerLabel" />
+
+    <Spinner
+        android:id="@+id/spinnerAddTaskTeam"
+        android:layout_width="369dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="21dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAddTaskTaskBody" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewAddTaskTeamSpinnerLabel" />
 
     <TextView
         android:id="@+id/textViewAddTaskPageLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="293dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="94dp"
         android:text="Add a Task"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextAddTaskTaskTitle"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
