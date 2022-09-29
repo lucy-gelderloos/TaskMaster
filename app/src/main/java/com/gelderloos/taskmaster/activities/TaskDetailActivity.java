@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.amplifyframework.datastore.generated.model.NewTask;
+import com.amplifyframework.datastore.generated.model.Task;
 import com.gelderloos.taskmaster.R;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class TaskDetailActivity extends AppCompatActivity {
     public static final String TASK_BODY_EXTRA_TAG = "taskBody";
     public static final String TASK_STATE_EXTRA_TAG = "taskState";
     public static final String DATABASE_NAME = "task_list_db";
-    List<NewTask> tasks = null;
+    List<Task> tasks = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

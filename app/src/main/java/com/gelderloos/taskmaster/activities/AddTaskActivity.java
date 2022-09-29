@@ -3,7 +3,9 @@ package com.gelderloos.taskmaster.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
+import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.core.model.temporal.Temporal;
 import com.amplifyframework.datastore.generated.model.*;
@@ -21,12 +24,33 @@ import java.util.Date;
 
 public class AddTaskActivity extends AppCompatActivity {
     public static final String Tag = "AddTaskActivity";
+    SharedPreferences preferences;
+    String userTeamString;
+    Team userTeam;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        userTeamString = preferences.getString(SettingsActivity.USER_TEAM_TAG,null);
 
+
+        Amplify.API.query(
+                // list gives ALL items, get() gives you 1
+                ModelQuery.list(Team.class),
+                successResponse -> {
+                    for (Team dataBaseTeam : successResponse.getData()){
+                        if(dataBaseTeam.getTeamName().equals(userTeamString)) {
+                            userTeam = dataBaseTeam;
+                        }
+                    }
+                    runOnUiThread(() -> {
+
+                    });
+                },
+                failureResponse -> Log.i(Tag, "Did not read Tasks successfully")
+        );
 
 //        setUpEditTexts();
         setUpTypeSpinner();
@@ -57,7 +81,6 @@ public class AddTaskActivity extends AppCompatActivity {
                 androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
                 TaskStatusEnum.values()
         ));
-
     }
 
     private void setUpSubmitButton(){
@@ -68,11 +91,14 @@ public class AddTaskActivity extends AppCompatActivity {
             String taskBody = ((EditText) findViewById(R.id.editTextAddTaskTaskBody)).getText().toString();
             String currentDateString = com.amazonaws.util.DateUtils.formatISO8601Date(new Date());
 
-            NewTask newTask = NewTask.builder()
+
+
+            Task newTask = Task.builder()
                     .taskTitle(taskTitle)
                     .taskDateCreated(new Temporal.DateTime(currentDateString))
                     .taskBody(taskBody)
                     .taskStatus((TaskStatusEnum) taskStateSpinner.getSelectedItem())
+                    .team(userTeam)
                     .build();
 
             Amplify.API.mutate(

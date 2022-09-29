@@ -10,17 +10,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.amplifyframework.datastore.generated.model.NewTask;
+import com.amplifyframework.datastore.generated.model.Task;
 import com.gelderloos.taskmaster.R;
 import com.gelderloos.taskmaster.activities.TaskDetailActivity;
 
 import java.util.List;
 
 public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRecyclerViewAdapter.TaskListViewHolder> {
-    List<NewTask> tasks;
+    List<Task> tasks;
     Context callingActivity;
 
-    public TaskListRecyclerViewAdapter(List<NewTask> tasks, Context callingActivity) {
+    public TaskListRecyclerViewAdapter(List<Task> tasks, Context callingActivity) {
         this.tasks = tasks;
         this.callingActivity = callingActivity;
     }

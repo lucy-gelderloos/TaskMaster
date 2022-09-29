@@ -6,6 +6,16 @@ query GetTask($id: ID!) {
     taskBody
     taskDateCreated
     taskStatus
+    teamID
+    team {
+      id
+      teamName
+      tasks {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -22,6 +32,13 @@ query ListTasks(
       taskBody
       taskDateCreated
       taskStatus
+      teamID
+      team {
+        id
+        teamName
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -35,16 +52,6 @@ query GetNewTask($id: ID!) {
     taskBody
     taskDateCreated
     taskStatus
-    teamID
-    team {
-      id
-      teamName
-      tasks {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
     createdAt
     updatedAt
   }
@@ -61,13 +68,6 @@ query ListNewTasks(
       taskBody
       taskDateCreated
       taskStatus
-      teamID
-      team {
-        id
-        teamName
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }

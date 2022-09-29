@@ -1,7 +1,6 @@
 package com.amplifyframework.datastore.generated.model;
 
 import com.amplifyframework.core.model.temporal.Temporal;
-import com.amplifyframework.core.model.annotations.BelongsTo;
 
 import java.util.List;
 import java.util.UUID;
@@ -25,20 +24,17 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 @ModelConfig(pluralName = "NewTasks", authRules = {
   @AuthRule(allow = AuthStrategy.PUBLIC, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
 })
-@Index(name = "byTeam", fields = {"teamID"})
 public final class NewTask implements Model {
   public static final QueryField ID = field("NewTask", "id");
   public static final QueryField TASK_TITLE = field("NewTask", "taskTitle");
   public static final QueryField TASK_BODY = field("NewTask", "taskBody");
   public static final QueryField TASK_DATE_CREATED = field("NewTask", "taskDateCreated");
   public static final QueryField TASK_STATUS = field("NewTask", "taskStatus");
-  public static final QueryField TEAM = field("NewTask", "teamID");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String taskTitle;
   private final @ModelField(targetType="String") String taskBody;
   private final @ModelField(targetType="AWSDateTime", isRequired = true) Temporal.DateTime taskDateCreated;
   private final @ModelField(targetType="TaskStatusEnum") TaskStatusEnum taskStatus;
-  private final @ModelField(targetType="Team") @BelongsTo(targetName = "teamID", type = Team.class) Team team;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
@@ -61,10 +57,6 @@ public final class NewTask implements Model {
       return taskStatus;
   }
   
-  public Team getTeam() {
-      return team;
-  }
-  
   public Temporal.DateTime getCreatedAt() {
       return createdAt;
   }
@@ -73,13 +65,12 @@ public final class NewTask implements Model {
       return updatedAt;
   }
   
-  private NewTask(String id, String taskTitle, String taskBody, Temporal.DateTime taskDateCreated, TaskStatusEnum taskStatus, Team team) {
+  private NewTask(String id, String taskTitle, String taskBody, Temporal.DateTime taskDateCreated, TaskStatusEnum taskStatus) {
     this.id = id;
     this.taskTitle = taskTitle;
     this.taskBody = taskBody;
     this.taskDateCreated = taskDateCreated;
     this.taskStatus = taskStatus;
-    this.team = team;
   }
   
   @Override
@@ -95,7 +86,6 @@ public final class NewTask implements Model {
               ObjectsCompat.equals(getTaskBody(), newTask.getTaskBody()) &&
               ObjectsCompat.equals(getTaskDateCreated(), newTask.getTaskDateCreated()) &&
               ObjectsCompat.equals(getTaskStatus(), newTask.getTaskStatus()) &&
-              ObjectsCompat.equals(getTeam(), newTask.getTeam()) &&
               ObjectsCompat.equals(getCreatedAt(), newTask.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), newTask.getUpdatedAt());
       }
@@ -109,7 +99,6 @@ public final class NewTask implements Model {
       .append(getTaskBody())
       .append(getTaskDateCreated())
       .append(getTaskStatus())
-      .append(getTeam())
       .append(getCreatedAt())
       .append(getUpdatedAt())
       .toString()
@@ -125,7 +114,6 @@ public final class NewTask implements Model {
       .append("taskBody=" + String.valueOf(getTaskBody()) + ", ")
       .append("taskDateCreated=" + String.valueOf(getTaskDateCreated()) + ", ")
       .append("taskStatus=" + String.valueOf(getTaskStatus()) + ", ")
-      .append("team=" + String.valueOf(getTeam()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
@@ -150,7 +138,6 @@ public final class NewTask implements Model {
       null,
       null,
       null,
-      null,
       null
     );
   }
@@ -160,8 +147,7 @@ public final class NewTask implements Model {
       taskTitle,
       taskBody,
       taskDateCreated,
-      taskStatus,
-      team);
+      taskStatus);
   }
   public interface TaskTitleStep {
     TaskDateCreatedStep taskTitle(String taskTitle);
@@ -178,7 +164,6 @@ public final class NewTask implements Model {
     BuildStep id(String id);
     BuildStep taskBody(String taskBody);
     BuildStep taskStatus(TaskStatusEnum taskStatus);
-    BuildStep team(Team team);
   }
   
 
@@ -188,7 +173,6 @@ public final class NewTask implements Model {
     private Temporal.DateTime taskDateCreated;
     private String taskBody;
     private TaskStatusEnum taskStatus;
-    private Team team;
     @Override
      public NewTask build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -198,8 +182,7 @@ public final class NewTask implements Model {
           taskTitle,
           taskBody,
           taskDateCreated,
-          taskStatus,
-          team);
+          taskStatus);
     }
     
     @Override
@@ -228,12 +211,6 @@ public final class NewTask implements Model {
         return this;
     }
     
-    @Override
-     public BuildStep team(Team team) {
-        this.team = team;
-        return this;
-    }
-    
     /**
      * @param id id
      * @return Current Builder instance, for fluent method chaining
@@ -246,13 +223,12 @@ public final class NewTask implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String taskTitle, String taskBody, Temporal.DateTime taskDateCreated, TaskStatusEnum taskStatus, Team team) {
+    private CopyOfBuilder(String id, String taskTitle, String taskBody, Temporal.DateTime taskDateCreated, TaskStatusEnum taskStatus) {
       super.id(id);
       super.taskTitle(taskTitle)
         .taskDateCreated(taskDateCreated)
         .taskBody(taskBody)
-        .taskStatus(taskStatus)
-        .team(team);
+        .taskStatus(taskStatus);
     }
     
     @Override
@@ -273,11 +249,6 @@ public final class NewTask implements Model {
     @Override
      public CopyOfBuilder taskStatus(TaskStatusEnum taskStatus) {
       return (CopyOfBuilder) super.taskStatus(taskStatus);
-    }
-    
-    @Override
-     public CopyOfBuilder team(Team team) {
-      return (CopyOfBuilder) super.team(team);
     }
   }
   

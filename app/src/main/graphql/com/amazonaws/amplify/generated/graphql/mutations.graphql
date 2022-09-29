@@ -9,6 +9,16 @@ mutation CreateTask(
     taskBody
     taskDateCreated
     taskStatus
+    teamID
+    team {
+      id
+      teamName
+      tasks {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -23,6 +33,16 @@ mutation UpdateTask(
     taskBody
     taskDateCreated
     taskStatus
+    teamID
+    team {
+      id
+      teamName
+      tasks {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -37,6 +57,16 @@ mutation DeleteTask(
     taskBody
     taskDateCreated
     taskStatus
+    teamID
+    team {
+      id
+      teamName
+      tasks {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -51,16 +81,6 @@ mutation CreateNewTask(
     taskBody
     taskDateCreated
     taskStatus
-    teamID
-    team {
-      id
-      teamName
-      tasks {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
     createdAt
     updatedAt
   }
@@ -75,16 +95,6 @@ mutation UpdateNewTask(
     taskBody
     taskDateCreated
     taskStatus
-    teamID
-    team {
-      id
-      teamName
-      tasks {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
     createdAt
     updatedAt
   }
@@ -99,16 +109,6 @@ mutation DeleteNewTask(
     taskBody
     taskDateCreated
     taskStatus
-    teamID
-    team {
-      id
-      teamName
-      tasks {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
     createdAt
     updatedAt
   }

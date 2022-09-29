@@ -6,6 +6,16 @@ subscription OnCreateTask {
     taskBody
     taskDateCreated
     taskStatus
+    teamID
+    team {
+      id
+      teamName
+      tasks {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -17,6 +27,16 @@ subscription OnUpdateTask {
     taskBody
     taskDateCreated
     taskStatus
+    teamID
+    team {
+      id
+      teamName
+      tasks {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -28,6 +48,16 @@ subscription OnDeleteTask {
     taskBody
     taskDateCreated
     taskStatus
+    teamID
+    team {
+      id
+      teamName
+      tasks {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -39,16 +69,6 @@ subscription OnCreateNewTask {
     taskBody
     taskDateCreated
     taskStatus
-    teamID
-    team {
-      id
-      teamName
-      tasks {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
     createdAt
     updatedAt
   }
@@ -60,16 +80,6 @@ subscription OnUpdateNewTask {
     taskBody
     taskDateCreated
     taskStatus
-    teamID
-    team {
-      id
-      teamName
-      tasks {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
     createdAt
     updatedAt
   }
@@ -81,16 +91,6 @@ subscription OnDeleteNewTask {
     taskBody
     taskDateCreated
     taskStatus
-    teamID
-    team {
-      id
-      teamName
-      tasks {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
     createdAt
     updatedAt
   }
