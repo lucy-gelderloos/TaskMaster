@@ -1,28 +1,25 @@
 package com.gelderloos.taskmaster.activities;
 
+import static com.gelderloos.taskmaster.activities.AddTaskActivity.Tag;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
+import android.util.Log;
 import android.widget.TextView;
 
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.NewTask;
 import com.gelderloos.taskmaster.R;
 import com.gelderloos.taskmaster.adapters.TaskListRecyclerViewAdapter;
-import com.gelderloos.taskmaster.database.TaskListDatabase;
-import com.gelderloos.taskmaster.models.Task;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,25 +27,16 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences preferences;
     TextView userTasks;
     String username;
-    TaskListDatabase taskListDatabase;
+
+    List<NewTask> tasks = null;
+    TaskListRecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        tasks = new ArrayList<>();
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-        taskListDatabase = Room.databaseBuilder(
-                        getApplicationContext(), //context is whole application so only one instance of database runs
-                        TaskListDatabase.class,
-                        DATABASE_NAME
-                )
-                .allowMainThreadQueries()
-                .fallbackToDestructiveMigration()
-                .build();
-
-        taskListDatabase.taskDao().findAllTasks();
 
         setUpTaskListRecyclerView();
         setUpAddTaskButton();
@@ -82,9 +70,9 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         taskListRecyclerView.setLayoutManager(layoutManager);
 
-        List<Task> tasks = taskListDatabase.taskDao().findAllTasks();
+//        List<Task> tasks = taskListDatabase.taskDao().findAllTasks();
 
-        TaskListRecyclerViewAdapter adapter = new TaskListRecyclerViewAdapter(tasks, this);
+        adapter = new TaskListRecyclerViewAdapter(tasks, this);
         taskListRecyclerView.setAdapter(adapter);
     }
 
@@ -92,8 +80,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        Amplify.API.query(
+                // list gives ALL items, get() gives you 1
+                ModelQuery.list(NewTask.class),
+                successResponse -> {
+                    Log.i(Tag, "Tasks read successfully!");
+                    tasks.clear();
+                    for (NewTask dataBaseTask : successResponse.getData()){
+                        tasks.add(dataBaseTask);
+                    }
+                    runOnUiThread(() -> {
+                        adapter.notifyDataSetChanged();
+                    });
+                },
+                failureResponse -> Log.i(Tag, "Did not read Tasks successfully")
+        );
+
         username = preferences.getString(SettingsActivity.USER_NAME_TAG, "User");
         userTasks = (TextView) findViewById(R.id.textViewMainActivityUserTasks);
+        // TODO: convert below string to resource string
         userTasks.setText(username + "'s Tasks:");
     }
 }

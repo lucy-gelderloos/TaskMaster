@@ -10,17 +10,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.amplifyframework.datastore.generated.model.NewTask;
 import com.gelderloos.taskmaster.R;
 import com.gelderloos.taskmaster.activities.TaskDetailActivity;
-import com.gelderloos.taskmaster.models.Task;
 
 import java.util.List;
 
 public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRecyclerViewAdapter.TaskListViewHolder> {
-    List<Task> tasks;
+    List<NewTask> tasks;
     Context callingActivity;
 
-    public TaskListRecyclerViewAdapter(List<Task> tasks, Context callingActivity) {
+    public TaskListRecyclerViewAdapter(List<NewTask> tasks, Context callingActivity) {
         this.tasks = tasks;
         this.callingActivity = callingActivity;
     }
@@ -35,14 +35,14 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
     @Override
     public void onBindViewHolder(@NonNull TaskListViewHolder holder, int position) {
         TextView taskFragmentTaskTitleTextView = holder.itemView.findViewById(R.id.textViewTaskFragmentTaskTitle);
-        String taskTitle = tasks.get(position).getTitle();
+        String taskTitle = tasks.get(position).getTaskTitle();
         taskFragmentTaskTitleTextView.setText(position + 1 + ". " + taskTitle);
 
         TextView taskFragmentTaskBodyTextView = holder.itemView.findViewById(R.id.textViewTaskFragmentTaskBody);
-        String taskBody = tasks.get(position).getBody();
+        String taskBody = tasks.get(position).getTaskBody();
         taskFragmentTaskBodyTextView.setText(taskBody);
 
-        String taskState = tasks.get(position).getState().toString();
+        String taskState = tasks.get(position).getTaskStatus().toString();
 
 
 //        TextView taskFragmentTaskStateTextView = holder.itemView.findViewById(R.id.TaskFragmentState);

@@ -1,0 +1,85 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateTask(
+  $input: CreateTaskInput!
+  $condition: ModelTaskConditionInput
+) {
+  createTask(input: $input, condition: $condition) {
+    id
+    taskTitle
+    taskBody
+    taskDateCreated
+    taskStatus
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateTask(
+  $input: UpdateTaskInput!
+  $condition: ModelTaskConditionInput
+) {
+  updateTask(input: $input, condition: $condition) {
+    id
+    taskTitle
+    taskBody
+    taskDateCreated
+    taskStatus
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteTask(
+  $input: DeleteTaskInput!
+  $condition: ModelTaskConditionInput
+) {
+  deleteTask(input: $input, condition: $condition) {
+    id
+    taskTitle
+    taskBody
+    taskDateCreated
+    taskStatus
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateNewTask(
+  $input: CreateNewTaskInput!
+  $condition: ModelNewTaskConditionInput
+) {
+  createNewTask(input: $input, condition: $condition) {
+    id
+    taskTitle
+    taskBody
+    taskDateCreated
+    taskStatus
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateNewTask(
+  $input: UpdateNewTaskInput!
+  $condition: ModelNewTaskConditionInput
+) {
+  updateNewTask(input: $input, condition: $condition) {
+    id
+    taskTitle
+    taskBody
+    taskDateCreated
+    taskStatus
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteNewTask(
+  $input: DeleteNewTaskInput!
+  $condition: ModelNewTaskConditionInput
+) {
+  deleteNewTask(input: $input, condition: $condition) {
+    id
+    taskTitle
+    taskBody
+    taskDateCreated
+    taskStatus
+    createdAt
+    updatedAt
+  }
+}
