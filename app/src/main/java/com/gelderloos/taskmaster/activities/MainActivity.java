@@ -13,10 +13,8 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.core.model.temporal.Temporal;
 import com.amplifyframework.datastore.generated.model.*;
 import com.gelderloos.taskmaster.R;
 import com.gelderloos.taskmaster.adapters.TaskListRecyclerViewAdapter;
@@ -24,6 +22,9 @@ import com.gelderloos.taskmaster.adapters.TaskListRecyclerViewAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO: heavier/darker font; pick font
+//TODO: either figure out how to get hint text to disappear in edittext or label those fields
+//TODO: backgrounds for form inputs
 public class MainActivity extends AppCompatActivity {
     public static final String DATABASE_NAME = "task_list_db";
     private static final String TAG = "MainActivity";
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         setUpAllTasksButton();
         setUpSettingsButton();
 
-        //         Hardcoding Teams
+//        Hardcoding Teams
 
 //        Team newTeamJava = Team.builder()
 //                .teamName("Team Java")
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpTaskListRecyclerView() {
-        RecyclerView taskListRecyclerView = findViewById(R.id.recyclerMainActivityTaskRecyclerView);
+        RecyclerView taskListRecyclerView = findViewById(R.id.recyclerAllTasksActivityTaskRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         taskListRecyclerView.setLayoutManager(layoutManager);
         adapter = new TaskListRecyclerViewAdapter(tasks, this);
@@ -112,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         Amplify.API.query(
-                // list gives ALL items, get() gives you 1
                 ModelQuery.list(Task.class),
                 successResponse -> {
                     Log.i(Tag, "Tasks read successfully!");
@@ -121,8 +121,6 @@ public class MainActivity extends AppCompatActivity {
                         if(dataBaseTask.getTeam().getTeamName().equals(userTeam)) {
                             tasks.add(dataBaseTask);
                         }
-//                        tasks.add(dataBaseTask);
-
                     }
                     runOnUiThread(() -> {
                         adapter.notifyDataSetChanged();

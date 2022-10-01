@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".fragments.TaskFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -12,12 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textColor="@color/darkest_pink"
         android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/textViewTaskFragmentTaskBody"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:translationY="36sp" />
 
 </FrameLayout>

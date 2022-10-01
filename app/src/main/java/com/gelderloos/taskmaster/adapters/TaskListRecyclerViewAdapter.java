@@ -36,11 +36,11 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
     public void onBindViewHolder(@NonNull TaskListViewHolder holder, int position) {
         TextView taskFragmentTaskTitleTextView = holder.itemView.findViewById(R.id.textViewTaskFragmentTaskTitle);
         String taskTitle = tasks.get(position).getTaskTitle();
-        taskFragmentTaskTitleTextView.setText(position + 1 + ". " + taskTitle);
-
-        TextView taskFragmentTaskBodyTextView = holder.itemView.findViewById(R.id.textViewTaskFragmentTaskBody);
         String taskBody = tasks.get(position).getTaskBody();
-        taskFragmentTaskBodyTextView.setText(taskBody);
+        taskFragmentTaskTitleTextView.setText(position + 1 + ". " + taskTitle + "\n" + taskBody + "\n");
+
+//        TextView taskFragmentTaskBodyTextView = holder.itemView.findViewById(R.id.textViewTaskFragmentTaskBody);
+//        taskFragmentTaskBodyTextView.setText(taskBody);
 
         String taskState = tasks.get(position).getTaskStatus().toString();
 

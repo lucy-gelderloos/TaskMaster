@@ -13,6 +13,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:text="Team"
+        android:textColor="@color/darkest_pink"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerAddTaskTaskState" />
@@ -24,6 +25,7 @@
         android:layout_marginStart="21dp"
         android:layout_marginTop="16dp"
         android:text="Task Status"
+        android:textColor="@color/darkest_pink"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextAddTaskTaskBody" />
@@ -37,8 +39,8 @@
         android:layout_marginEnd="21dp"
         android:ems="10"
         android:gravity="start|top"
+        android:hint="@string/edit_task_description"
         android:inputType="textMultiLine"
-        android:text="@string/edit_task_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextAddTaskTaskTitle" />
@@ -51,8 +53,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="21dp"
         android:ems="10"
+        android:hint="@string/edit_task_title"
         android:inputType="textPersonName"
-        android:text="@string/edit_task_title"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +68,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="57dp"
         android:layout_marginBottom="86dp"
-        android:text="@string/submit_new_task"
+        android:text="@string/submit_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,6 +111,7 @@
         android:layout_marginStart="21dp"
         android:layout_marginTop="94dp"
         android:text="Add a Task"
+        android:textColor="@color/darkest_pink"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
