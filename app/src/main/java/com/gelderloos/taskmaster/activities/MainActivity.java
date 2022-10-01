@@ -22,11 +22,7 @@ import com.gelderloos.taskmaster.adapters.TaskListRecyclerViewAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO: heavier/darker font; pick font
-//TODO: either figure out how to get hint text to disappear in edittext or label those fields
-//TODO: backgrounds for form inputs
 public class MainActivity extends AppCompatActivity {
-    public static final String DATABASE_NAME = "task_list_db";
     private static final String TAG = "MainActivity";
     SharedPreferences preferences;
     TextView userTasksTV;
@@ -48,35 +44,6 @@ public class MainActivity extends AppCompatActivity {
         setUpAddTaskButton();
         setUpAllTasksButton();
         setUpSettingsButton();
-
-//        Hardcoding Teams
-
-//        Team newTeamJava = Team.builder()
-//                .teamName("Team Java")
-//                .build();
-//        Amplify.API.mutate(
-//                ModelMutation.create(newTeamJava),
-//                success -> Log.i(TAG, "Team added"),
-//                failure -> Log.i(TAG, "Didn't work")
-//        );
-//
-//        Team newTeamHTML = Team.builder()
-//                .teamName("HTML Team")
-//                .build();
-//        Amplify.API.mutate(
-//                ModelMutation.create(newTeamHTML),
-//                success -> Log.i(TAG, "Team added"),
-//                failure -> Log.i(TAG, "Team not added")
-//        );
-//
-//        Team newTeamCSS = Team.builder()
-//                .teamName("CSS Team")
-//                .build();
-//        Amplify.API.mutate(
-//                ModelMutation.create(newTeamCSS),
-//                success -> Log.i(TAG, "Team added"),
-//                failure -> Log.i(TAG, "Team not added")
-//        );
     }
 
     private void setUpAddTaskButton() {
@@ -115,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
         Amplify.API.query(
                 ModelQuery.list(Task.class),
                 successResponse -> {
-                    Log.i(Tag, "Tasks read successfully!");
                     tasks.clear();
                     for (Task dataBaseTask : successResponse.getData()){
                         if(dataBaseTask.getTeam().getTeamName().equals(userTeam)) {
@@ -133,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
         userTeam = preferences.getString(SettingsActivity.USER_TEAM_TAG, "Join a team to see your tasks");
         userTasksTV = (TextView) findViewById(R.id.textViewMainActivityUserTasks);
         userTeamTV = (TextView) findViewById(R.id.textViewMainActivityUserTeam);
-        // TODO: convert below string to resource string
         userTasksTV.setText(username + "'s Tasks:");
         userTeamTV.setText(userTeam);
     }

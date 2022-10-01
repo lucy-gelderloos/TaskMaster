@@ -2,6 +2,15 @@
 
 A task management app
 
+## Day 8
+
+- Final styling
+- All tasks page displays all tasks for user's team
+- Prepared for publication
+  - .aab generated
+  - [link to privacy policy](https://www.termsfeed.com/live/b44d830a-83ce-496f-86b1-bb88a979efc1)
+  - contact email for privacy policy: lucygel@live.com
+
 ## Day 7
 
 - Added Team model
