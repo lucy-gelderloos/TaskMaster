@@ -44,7 +44,7 @@ public class SettingsActivity extends AppCompatActivity {
         String userName = preferences.getString(USER_NAME_TAG, "");
         if(!userName.isEmpty()){
             EditText userNameEdited = ((EditText)findViewById(R.id.editTextSettingsEnterUsername));
-            userNameEdited.setText(userName);
+            userNameEdited.setHint(userName);
 //            userNameEdited.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 //                @Override
 //                public void onFocusChange(View view, boolean b) {

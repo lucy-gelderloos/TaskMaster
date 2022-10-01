@@ -124,7 +124,7 @@ public class AddTaskTest {
         materialButton2.perform(click());
 
         ViewInteraction recyclerView = onView(
-                allOf(withId(R.id.recyclerMainActivityTaskRecyclerView),
+                allOf(withId(R.id.recyclerAllTasksActivityTaskRecyclerView),
                         childAtPosition(
                                 withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")),
                                 4)));

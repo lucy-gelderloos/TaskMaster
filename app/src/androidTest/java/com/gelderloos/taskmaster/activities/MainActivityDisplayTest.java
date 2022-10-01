@@ -3,7 +3,6 @@ package com.gelderloos.taskmaster.activities;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -11,8 +10,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
-import androidx.test.espresso.Espresso;
-import static androidx.test.espresso.Espresso.pressBack;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -49,7 +46,7 @@ public class MainActivityDisplayTest {
         button2.check(matches(isDisplayed()));
 
         ViewInteraction recyclerView = onView(
-                allOf(withId(R.id.recyclerMainActivityTaskRecyclerView),
+                allOf(withId(R.id.recyclerAllTasksActivityTaskRecyclerView),
                         withParent(withParent(withId(android.R.id.content))),
                         isDisplayed()));
         recyclerView.check(matches(isDisplayed()));

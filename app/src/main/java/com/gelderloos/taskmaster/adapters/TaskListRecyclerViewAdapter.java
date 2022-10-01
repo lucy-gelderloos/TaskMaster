@@ -36,17 +36,10 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
     public void onBindViewHolder(@NonNull TaskListViewHolder holder, int position) {
         TextView taskFragmentTaskTitleTextView = holder.itemView.findViewById(R.id.textViewTaskFragmentTaskTitle);
         String taskTitle = tasks.get(position).getTaskTitle();
-        taskFragmentTaskTitleTextView.setText(position + 1 + ". " + taskTitle);
-
-        TextView taskFragmentTaskBodyTextView = holder.itemView.findViewById(R.id.textViewTaskFragmentTaskBody);
         String taskBody = tasks.get(position).getTaskBody();
-        taskFragmentTaskBodyTextView.setText(taskBody);
+        taskFragmentTaskTitleTextView.setText(position + 1 + ". " + taskTitle + "\n" + taskBody + "\n");
 
         String taskState = tasks.get(position).getTaskStatus().toString();
-
-
-//        TextView taskFragmentTaskStateTextView = holder.itemView.findViewById(R.id.TaskFragmentState);
-//        String state = tasks.get(position).getState().toString();
 
         View taskViewHolder = holder.itemView;
         taskViewHolder.setOnClickListener(view -> {
@@ -60,7 +53,6 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
 
     @Override
     public int getItemCount() {
-        //        return 100;
         return tasks.size();
     }
 

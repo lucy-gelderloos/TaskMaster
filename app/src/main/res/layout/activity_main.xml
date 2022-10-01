@@ -10,13 +10,13 @@
         android:id="@+id/textViewMainActivityUserTasks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="76dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="131dp"
         android:text="@string/my_tasks"
+        android:textColor="@color/darkest_pink"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerMainActivityTaskRecyclerView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.527"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonMainActivityAddTask"
@@ -51,15 +51,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerMainActivityTaskRecyclerView"
+        android:id="@+id/recyclerAllTasksActivityTaskRecyclerView"
         android:layout_width="0dp"
         android:layout_height="213dp"
         android:layout_marginStart="31dp"
-        android:layout_marginTop="226dp"
+        android:layout_marginTop="34dp"
         android:layout_marginEnd="31dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewMainActivityUserTeam" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -81,10 +81,10 @@
         android:id="@+id/textViewMainActivityUserTeam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="13dp"
+        android:layout_marginTop="15dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/textViewMainActivityUserTasks"
+        android:textColor="@color/darkest_pink"
+        app:layout_constraintStart_toStartOf="@+id/textViewMainActivityUserTasks"
         app:layout_constraintTop_toBottomOf="@+id/textViewMainActivityUserTasks" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

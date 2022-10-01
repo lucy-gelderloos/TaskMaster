@@ -2,6 +2,28 @@
 
 A task management app
 
+## Day 8
+
+- Final styling
+- All tasks page displays all tasks for user's team
+- Prepared for publication
+  - .aab generated
+  - [link to privacy policy](https://www.termsfeed.com/live/b44d830a-83ce-496f-86b1-bb88a979efc1) (contact email for privacy policy: lucygel@live.com)
+  - Play store icon & feature graphic assets created
+  - ALl other initial publication steps completed
+- Waiting on identity verification to publish app
+
+![Main page day 8](./screenshots/main-day-8.png)
+![Settings page day 8](./screenshots/settings-day-8.png)
+![Add task page day 8](./screenshots/add-task-day-8.png)
+![All tasks page day 8](./screenshots/add-task-day-8.png)
+![Task detail page day 8](./screenshots/task-detail-day-8.png)
+
+### Play Store Assets
+
+![App Icon](./screenshots/icon.png)
+![Feature Graphic](./screenshots/feature-image.png)
+
 ## Day 7
 
 - Added Team model

@@ -13,10 +13,8 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.core.model.temporal.Temporal;
 import com.amplifyframework.datastore.generated.model.*;
 import com.gelderloos.taskmaster.R;
 import com.gelderloos.taskmaster.adapters.TaskListRecyclerViewAdapter;
@@ -25,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String DATABASE_NAME = "task_list_db";
     private static final String TAG = "MainActivity";
     SharedPreferences preferences;
     TextView userTasksTV;
@@ -47,35 +44,6 @@ public class MainActivity extends AppCompatActivity {
         setUpAddTaskButton();
         setUpAllTasksButton();
         setUpSettingsButton();
-
-        //         Hardcoding Teams
-
-//        Team newTeamJava = Team.builder()
-//                .teamName("Team Java")
-//                .build();
-//        Amplify.API.mutate(
-//                ModelMutation.create(newTeamJava),
-//                success -> Log.i(TAG, "Team added"),
-//                failure -> Log.i(TAG, "Didn't work")
-//        );
-//
-//        Team newTeamHTML = Team.builder()
-//                .teamName("HTML Team")
-//                .build();
-//        Amplify.API.mutate(
-//                ModelMutation.create(newTeamHTML),
-//                success -> Log.i(TAG, "Team added"),
-//                failure -> Log.i(TAG, "Team not added")
-//        );
-//
-//        Team newTeamCSS = Team.builder()
-//                .teamName("CSS Team")
-//                .build();
-//        Amplify.API.mutate(
-//                ModelMutation.create(newTeamCSS),
-//                success -> Log.i(TAG, "Team added"),
-//                failure -> Log.i(TAG, "Team not added")
-//        );
     }
 
     private void setUpAddTaskButton() {
@@ -100,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpTaskListRecyclerView() {
-        RecyclerView taskListRecyclerView = findViewById(R.id.recyclerMainActivityTaskRecyclerView);
+        RecyclerView taskListRecyclerView = findViewById(R.id.recyclerAllTasksActivityTaskRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         taskListRecyclerView.setLayoutManager(layoutManager);
         adapter = new TaskListRecyclerViewAdapter(tasks, this);
@@ -112,17 +80,13 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         Amplify.API.query(
-                // list gives ALL items, get() gives you 1
                 ModelQuery.list(Task.class),
                 successResponse -> {
-                    Log.i(Tag, "Tasks read successfully!");
                     tasks.clear();
                     for (Task dataBaseTask : successResponse.getData()){
                         if(dataBaseTask.getTeam().getTeamName().equals(userTeam)) {
                             tasks.add(dataBaseTask);
                         }
-//                        tasks.add(dataBaseTask);
-
                     }
                     runOnUiThread(() -> {
                         adapter.notifyDataSetChanged();
@@ -135,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
         userTeam = preferences.getString(SettingsActivity.USER_TEAM_TAG, "Join a team to see your tasks");
         userTasksTV = (TextView) findViewById(R.id.textViewMainActivityUserTasks);
         userTeamTV = (TextView) findViewById(R.id.textViewMainActivityUserTeam);
-        // TODO: convert below string to resource string
         userTasksTV.setText(username + "'s Tasks:");
         userTeamTV.setText(userTeam);
     }
