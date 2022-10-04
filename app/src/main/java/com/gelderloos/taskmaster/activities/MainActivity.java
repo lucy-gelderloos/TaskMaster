@@ -53,33 +53,6 @@ public class MainActivity extends AppCompatActivity {
         setUpAllTasksButton();
         setUpSettingsButton();
         setUpAuthButtons();
-
-        Team newTeamJava = Team.builder()
-                .teamName("Team Java")
-                .build();
-        Amplify.API.mutate(
-                ModelMutation.create(newTeamJava),
-                success -> Log.i(TAG, "Team added"),
-                failure -> Log.i(TAG, "Didn't work")
-        );
-
-        Team newTeamHTML = Team.builder()
-                .teamName("HTML Team")
-                .build();
-        Amplify.API.mutate(
-                ModelMutation.create(newTeamHTML),
-                success -> Log.i(TAG, "Team added"),
-                failure -> Log.i(TAG, "Team not added")
-        );
-
-        Team newTeamCSS = Team.builder()
-                .teamName("CSS Team")
-                .build();
-        Amplify.API.mutate(
-                ModelMutation.create(newTeamCSS),
-                success -> Log.i(TAG, "Team added"),
-                failure -> Log.i(TAG, "Team not added")
-        );
     }
 
     private void setUpAddTaskButton() {
