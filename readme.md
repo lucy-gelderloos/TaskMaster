@@ -2,6 +2,19 @@
 
 A task management app
 
+## Day 9
+
+- Implemented authentication with Amplify Cognito
+  - Added Log In, Sign Up, and Log Out buttons to main activity
+  - Added Log In, Sign Up, and Verification activities
+  - New users are added to Cognito user pool
+
+![Main page day 9 (logged out view)](./screenshots/main-day-9-logged-out.png)
+![Main page day 9 (logged in view)](./screenshots/main-day-9-logged-in.png)
+![Signup page](./screenshots/sign-up-day-9.png)
+![Verification page](./screenshots/verification-day-9.png)
+![Login page](./screenshots/login-day-9.png)
+
 ## Day 8
 
 - Final styling

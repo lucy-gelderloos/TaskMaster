@@ -45,12 +45,6 @@ public class SettingsActivity extends AppCompatActivity {
         if(!userName.isEmpty()){
             EditText userNameEdited = ((EditText)findViewById(R.id.editTextSettingsEnterUsername));
             userNameEdited.setHint(userName);
-//            userNameEdited.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//                @Override
-//                public void onFocusChange(View view, boolean b) {
-//                    userNameEdited.setText("");
-//                }
-//            });
         }
 
         teamNames = new ArrayList<>();
