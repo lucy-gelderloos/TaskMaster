@@ -11,9 +11,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.*;
 import com.gelderloos.taskmaster.R;
@@ -25,6 +29,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     SharedPreferences preferences;
+    public AuthUser currentUser = null;
     TextView userTasksTV;
     TextView userTeamTV;
     String username;
@@ -33,17 +38,48 @@ public class MainActivity extends AppCompatActivity {
     List<Task> tasks = null;
     TaskListRecyclerViewAdapter adapter;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tasks = new ArrayList<>();
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        currentUser = Amplify.Auth.getCurrentUser();
 
         setUpTaskListRecyclerView();
         setUpAddTaskButton();
         setUpAllTasksButton();
         setUpSettingsButton();
+        setUpAuthButtons();
+
+        Team newTeamJava = Team.builder()
+                .teamName("Team Java")
+                .build();
+        Amplify.API.mutate(
+                ModelMutation.create(newTeamJava),
+                success -> Log.i(TAG, "Team added"),
+                failure -> Log.i(TAG, "Didn't work")
+        );
+
+        Team newTeamHTML = Team.builder()
+                .teamName("HTML Team")
+                .build();
+        Amplify.API.mutate(
+                ModelMutation.create(newTeamHTML),
+                success -> Log.i(TAG, "Team added"),
+                failure -> Log.i(TAG, "Team not added")
+        );
+
+        Team newTeamCSS = Team.builder()
+                .teamName("CSS Team")
+                .build();
+        Amplify.API.mutate(
+                ModelMutation.create(newTeamCSS),
+                success -> Log.i(TAG, "Team added"),
+                failure -> Log.i(TAG, "Team not added")
+        );
     }
 
     private void setUpAddTaskButton() {
@@ -73,6 +109,40 @@ public class MainActivity extends AppCompatActivity {
         taskListRecyclerView.setLayoutManager(layoutManager);
         adapter = new TaskListRecyclerViewAdapter(tasks, this);
         taskListRecyclerView.setAdapter(adapter);
+    }
+
+    private void setUpAuthButtons(){
+        Button logInButton = findViewById(R.id.buttonMainActivityLogIn);
+        Button signUpButton = findViewById(R.id.buttonMainActivitySignUp);
+        Button logOutButton = findViewById(R.id.buttonMainActivityLogOut);
+
+        if (currentUser == null) {
+            logInButton.setVisibility(View.VISIBLE);
+            signUpButton.setVisibility(View.VISIBLE);
+            logOutButton.setVisibility(View.INVISIBLE);
+        } else {
+            logInButton.setVisibility(View.INVISIBLE);
+            signUpButton.setVisibility(View.INVISIBLE);
+            logOutButton.setVisibility(View.VISIBLE);
+        }
+        logInButton.setOnClickListener(view -> {
+            Intent goToLoginActivity = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(goToLoginActivity);
+        });
+
+        signUpButton.setOnClickListener(view -> {
+            Intent goToSignUpActivity = new Intent(MainActivity.this, SignUpActivity.class);
+            startActivity(goToSignUpActivity);
+        });
+        logOutButton.setOnClickListener(view -> {
+            Amplify.Auth.signOut(
+                    () -> Log.i(TAG, "Signed out successfully"),
+                    error -> Log.e(TAG, error.toString())
+            );
+            Intent goToLoginActivity = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(goToLoginActivity);
+        });
+
     }
 
     @Override
