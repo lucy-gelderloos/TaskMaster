@@ -9,36 +9,45 @@
     <TextView
         android:id="@+id/textViewTaskDetailBody"
         android:layout_width="360dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="285dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
         android:textColor="@color/darkest_pink"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTaskDetailState" />
 
     <TextView
         android:id="@+id/textViewTaskDetailTitle"
         android:layout_width="360dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="133dp"
-        android:layout_marginBottom="26dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="150dp"
         android:textColor="@color/darkest_pink"
         android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewTaskDetailState"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewTaskDetailState"
         android:layout_width="360dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="52dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="45dp"
         android:textColor="@color/darkest_pink"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewTaskDetailBody"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTaskDetailTitle" />
+
+    <ImageView
+        android:id="@+id/imageViewTaskDetailImage"
+        android:layout_width="369dp"
+        android:layout_height="367dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTaskDetailBody"
+        tools:srcCompat="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>

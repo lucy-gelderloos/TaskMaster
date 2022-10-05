@@ -64,46 +64,42 @@ public class ImageTaskActivity extends AppCompatActivity {
 
     private ActivityResultLauncher<Intent> getImagePickingActivityResultLauncher(){
         ActivityResultLauncher<Intent> imagePickingActivityResultLauncher =
-                registerForActivityResult(
-                        new ActivityResultContracts.StartActivityForResult(),
-                        new ActivityResultCallback<ActivityResult>() {
-                            @Override
-                            public void onActivityResult(ActivityResult result) {
-                                Uri pickedImageFileUri = result.getData().getData();
-                                try {
-                                    InputStream pickedImageInputStream = getContentResolver().openInputStream(pickedImageFileUri);
-                                    String pickedImageFilename = getFileNameFromUri(pickedImageFileUri);
-                                    // upload to S3
-                                    uploadInputStreamToS3(pickedImageInputStream, pickedImageFilename, pickedImageFileUri);
-                                } catch (FileNotFoundException fnfe) {
-                                    Log.e(TAG, "Could not get file from file picker! " + fnfe.getMessage(), fnfe);
-                                }
-                            }
+            registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        Uri pickedImageFileUri = result.getData().getData();
+                        try {
+                            InputStream pickedImageInputStream = getContentResolver().openInputStream(pickedImageFileUri);
+                            String pickedImageFilename = getFileNameFromUri(pickedImageFileUri);
+                            uploadInputStreamToS3(pickedImageInputStream, pickedImageFilename, pickedImageFileUri);
+                        } catch (FileNotFoundException fnfe) {
+                            Log.e(TAG, "Could not get file from file picker! " + fnfe.getMessage(), fnfe);
                         }
-                );
+                    }
+                }
+            );
         return imagePickingActivityResultLauncher;
     }
 
     private void uploadInputStreamToS3(InputStream pickedImageInputStream, String pickedImageFileName, Uri pickedImageFileUri){
         Amplify.Storage.uploadInputStream(
-                pickedImageFileName,
-                pickedImageInputStream,
-                success -> {
-                    Log.i(TAG, "Succeeded in getting file uploaded to S3! Key is: " + success.getKey());
-                    s3ImageKey = success.getKey();
-                    //TODO
-                    // saveModel() -> SuperFurBoy
-                    // connect to our Imaged
-                    ImageView taskImageView = findViewById(R.id.imageViewImageTaskImage);
-                    InputStream pickedImageInputStreamCopy = null;
-                    try {
-                        pickedImageInputStreamCopy = getContentResolver().openInputStream(pickedImageFileUri);
-                    } catch (FileNotFoundException fnfe) {
-                        Log.e(TAG, "Could not get file stream from URI! " + fnfe.getMessage(), fnfe);
-                    }
-                    taskImageView.setImageBitmap(BitmapFactory.decodeStream(pickedImageInputStreamCopy));
-                },
-                failure -> Log.e(TAG, "Failure in uploading file to S3 with filename: " + pickedImageFileName + " with error: " + failure.getMessage())
+            pickedImageFileName,
+            pickedImageInputStream,
+            success -> {
+                Log.i(TAG, "Succeeded in getting file uploaded to S3! Key is: " + success.getKey());
+                s3ImageKey = success.getKey();
+                ImageView taskImageView = findViewById(R.id.imageViewImageTaskImage);
+                InputStream pickedImageInputStreamCopy = null;
+                try {
+                    pickedImageInputStreamCopy = getContentResolver().openInputStream(pickedImageFileUri);
+                } catch (FileNotFoundException fnfe) {
+                    Log.e(TAG, "Could not get file stream from URI! " + fnfe.getMessage(), fnfe);
+                }
+                taskImageView.setImageBitmap(BitmapFactory.decodeStream(pickedImageInputStreamCopy));
+            },
+            failure -> Log.e(TAG, "Failure in uploading file to S3 with filename: " + pickedImageFileName + " with error: " + failure.getMessage())
         );
 
     }

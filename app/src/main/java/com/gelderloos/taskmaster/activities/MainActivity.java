@@ -106,21 +106,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpTaskListRecyclerView() {
-        Amplify.API.query(
-                ModelQuery.list(Task.class),
-                successResponse -> {
-                    tasks.clear();
-                    for (Task dataBaseTask : successResponse.getData()){
-                        if(dataBaseTask.getTeam().getTeamName().equals(userTeam)) {
-                            tasks.add(dataBaseTask);
-                        }
-                    }
-                    runOnUiThread(() -> {
-                        adapter.notifyDataSetChanged();
-                    });
-                },
-                failureResponse -> Log.i(Tag, "Did not read Tasks successfully")
-        );
+
 
         RecyclerView taskListRecyclerView = findViewById(R.id.recyclerAllTasksActivityTaskRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
@@ -166,6 +152,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        Amplify.API.query(
+                ModelQuery.list(Task.class),
+                successResponse -> {
+                    tasks.clear();
+                    for (Task dataBaseTask : successResponse.getData()){
+                        if(dataBaseTask.getTeam().getTeamName().equals(userTeam)) {
+                            tasks.add(dataBaseTask);
+                        }
+                    }
+                    runOnUiThread(() -> {
+                        adapter.notifyDataSetChanged();
+                    });
+                },
+                failureResponse -> Log.i(Tag, "Did not read Tasks successfully")
+        );
 
         username = preferences.getString(SettingsActivity.USER_NAME_TAG, "User");
         userTeam = preferences.getString(SettingsActivity.USER_TEAM_TAG, "Join a team to see your tasks");
