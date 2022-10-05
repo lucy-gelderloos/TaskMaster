@@ -15,19 +15,13 @@ mutation CreateTask(
       teamName
       tasks {
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
+    associatedImageS3Key
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 mutation UpdateTask(
@@ -46,19 +40,13 @@ mutation UpdateTask(
       teamName
       tasks {
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
+    associatedImageS3Key
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 mutation DeleteTask(
@@ -77,70 +65,13 @@ mutation DeleteTask(
       teamName
       tasks {
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
+    associatedImageS3Key
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-mutation CreateNewTask(
-  $input: CreateNewTaskInput!
-  $condition: ModelNewTaskConditionInput
-) {
-  createNewTask(input: $input, condition: $condition) {
-    id
-    taskTitle
-    taskBody
-    taskDateCreated
-    taskStatus
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-mutation UpdateNewTask(
-  $input: UpdateNewTaskInput!
-  $condition: ModelNewTaskConditionInput
-) {
-  updateNewTask(input: $input, condition: $condition) {
-    id
-    taskTitle
-    taskBody
-    taskDateCreated
-    taskStatus
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-mutation DeleteNewTask(
-  $input: DeleteNewTaskInput!
-  $condition: ModelNewTaskConditionInput
-) {
-  deleteNewTask(input: $input, condition: $condition) {
-    id
-    taskTitle
-    taskBody
-    taskDateCreated
-    taskStatus
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 mutation CreateTeam(
@@ -158,20 +89,14 @@ mutation CreateTeam(
         taskDateCreated
         taskStatus
         teamID
+        associatedImageS3Key
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 mutation UpdateTeam(
@@ -189,20 +114,14 @@ mutation UpdateTeam(
         taskDateCreated
         taskStatus
         teamID
+        associatedImageS3Key
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 mutation DeleteTeam(
@@ -220,19 +139,13 @@ mutation DeleteTeam(
         taskDateCreated
         taskStatus
         teamID
+        associatedImageS3Key
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }

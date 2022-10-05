@@ -12,19 +12,13 @@ subscription OnCreateTask {
       teamName
       tasks {
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
+    associatedImageS3Key
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnUpdateTask {
@@ -40,19 +34,13 @@ subscription OnUpdateTask {
       teamName
       tasks {
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
+    associatedImageS3Key
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnDeleteTask {
@@ -68,61 +56,13 @@ subscription OnDeleteTask {
       teamName
       tasks {
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
+    associatedImageS3Key
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnCreateNewTask {
-  onCreateNewTask {
-    id
-    taskTitle
-    taskBody
-    taskDateCreated
-    taskStatus
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnUpdateNewTask {
-  onUpdateNewTask {
-    id
-    taskTitle
-    taskBody
-    taskDateCreated
-    taskStatus
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnDeleteNewTask {
-  onDeleteNewTask {
-    id
-    taskTitle
-    taskBody
-    taskDateCreated
-    taskStatus
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnCreateTeam {
@@ -137,20 +77,14 @@ subscription OnCreateTeam {
         taskDateCreated
         taskStatus
         teamID
+        associatedImageS3Key
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnUpdateTeam {
@@ -165,20 +99,14 @@ subscription OnUpdateTeam {
         taskDateCreated
         taskStatus
         teamID
+        associatedImageS3Key
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnDeleteTeam {
@@ -193,19 +121,13 @@ subscription OnDeleteTeam {
         taskDateCreated
         taskStatus
         teamID
+        associatedImageS3Key
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }

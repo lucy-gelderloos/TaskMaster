@@ -12,19 +12,13 @@ query GetTask($id: ID!) {
       teamName
       tasks {
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
+    associatedImageS3Key
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 query ListTasks(
@@ -45,120 +39,12 @@ query ListTasks(
         teamName
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
+      associatedImageS3Key
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
     nextToken
-    startedAt
-  }
-}
-query SyncTasks(
-  $filter: ModelTaskFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncTasks(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      id
-      taskTitle
-      taskBody
-      taskDateCreated
-      taskStatus
-      teamID
-      team {
-        id
-        teamName
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    nextToken
-    startedAt
-  }
-}
-query GetNewTask($id: ID!) {
-  getNewTask(id: $id) {
-    id
-    taskTitle
-    taskBody
-    taskDateCreated
-    taskStatus
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-query ListNewTasks(
-  $filter: ModelNewTaskFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listNewTasks(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      taskTitle
-      taskBody
-      taskDateCreated
-      taskStatus
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    nextToken
-    startedAt
-  }
-}
-query SyncNewTasks(
-  $filter: ModelNewTaskFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncNewTasks(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      id
-      taskTitle
-      taskBody
-      taskDateCreated
-      taskStatus
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    nextToken
-    startedAt
   }
 }
 query GetTeam($id: ID!) {
@@ -173,20 +59,14 @@ query GetTeam($id: ID!) {
         taskDateCreated
         taskStatus
         teamID
+        associatedImageS3Key
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 query ListTeams(
@@ -200,44 +80,10 @@ query ListTeams(
       teamName
       tasks {
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
     nextToken
-    startedAt
-  }
-}
-query SyncTeams(
-  $filter: ModelTeamFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncTeams(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      id
-      teamName
-      tasks {
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    nextToken
-    startedAt
   }
 }

@@ -1,19 +1,20 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-taskmastertest-dev-101008-authRole",
-      "UnauthRoleArn": "arn:aws:iam::968126251197:role/amplify-taskmastertest-dev-101008-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::968126251197:role/amplify-taskmastertest-dev-101008-authRole",
+      "AuthRoleName": "amplify-taskmaster-dev-163054-authRole",
+      "UnauthRoleArn": "arn:aws:iam::968126251197:role/amplify-taskmaster-dev-163054-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::968126251197:role/amplify-taskmaster-dev-163054-authRole",
       "Region": "us-west-2",
-      "DeploymentBucketName": "amplify-taskmastertest-dev-101008-deployment",
-      "UnauthRoleName": "amplify-taskmastertest-dev-101008-unauthRole",
-      "StackName": "amplify-taskmastertest-dev-101008",
-      "StackId": "arn:aws:cloudformation:us-west-2:968126251197:stack/amplify-taskmastertest-dev-101008/3dc1ede0-3e87-11ed-be07-0666e24333c1",
-      "AmplifyAppId": "d39dks23bpg817"
+      "DeploymentBucketName": "amplify-taskmaster-dev-163054-deployment",
+      "UnauthRoleName": "amplify-taskmaster-dev-163054-unauthRole",
+      "StackName": "amplify-taskmaster-dev-163054",
+      "StackId": "arn:aws:cloudformation:us-west-2:968126251197:stack/amplify-taskmaster-dev-163054/97a43100-443c-11ed-b998-02af003e5211",
+      "AmplifyAppId": "d1okcge6tmm91e"
     },
     "categories": {
       "auth": {
-        "taskmastertest991aabdf": {}
+        "taskmaster33c055fb": {},
+        "true": {}
       }
     }
   }

@@ -1,0 +1,17 @@
+{
+  "resourceName": "S3taskmaster",
+  "policyUUID": "fb050884",
+  "bucketName": "taskmaster9f9b340010ce4d0780f907a35bac74d9",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

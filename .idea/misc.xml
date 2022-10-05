@@ -3,13 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/lucyg/AndroidStudioProjects/TaskMaster/app/src/main/res/layout/activity_add_task.xml" value="0.375" />
+        <entry key="..\:/Users/lucyg/AndroidStudioProjects/TaskMaster/app/src/main/res/layout/activity_add_task.xml" value="0.165" />
         <entry key="..\:/Users/lucyg/AndroidStudioProjects/TaskMaster/app/src/main/res/layout/activity_all_tasks.xml" value="0.25" />
+        <entry key="..\:/Users/lucyg/AndroidStudioProjects/TaskMaster/app/src/main/res/layout/activity_image_task.xml" value="0.165" />
         <entry key="..\:/Users/lucyg/AndroidStudioProjects/TaskMaster/app/src/main/res/layout/activity_login.xml" value="0.335" />
         <entry key="..\:/Users/lucyg/AndroidStudioProjects/TaskMaster/app/src/main/res/layout/activity_main.xml" value="0.335" />
         <entry key="..\:/Users/lucyg/AndroidStudioProjects/TaskMaster/app/src/main/res/layout/activity_settings.xml" value="0.25" />
         <entry key="..\:/Users/lucyg/AndroidStudioProjects/TaskMaster/app/src/main/res/layout/activity_sign_up.xml" value="0.335" />
-        <entry key="..\:/Users/lucyg/AndroidStudioProjects/TaskMaster/app/src/main/res/layout/activity_task_detail.xml" value="0.14942528735632185" />
+        <entry key="..\:/Users/lucyg/AndroidStudioProjects/TaskMaster/app/src/main/res/layout/activity_task_detail.xml" value="0.25" />
         <entry key="..\:/Users/lucyg/AndroidStudioProjects/TaskMaster/app/src/main/res/layout/activity_verify.xml" value="0.375" />
         <entry key="..\:/Users/lucyg/AndroidStudioProjects/TaskMaster/app/src/main/res/layout/fragment_task.xml" value="0.24629418472063855" />
       </map>

@@ -33,12 +33,14 @@ public final class Task implements Model {
   public static final QueryField TASK_DATE_CREATED = field("Task", "taskDateCreated");
   public static final QueryField TASK_STATUS = field("Task", "taskStatus");
   public static final QueryField TEAM = field("Task", "teamID");
+  public static final QueryField ASSOCIATED_IMAGE_S3_KEY = field("Task", "associatedImageS3Key");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String taskTitle;
   private final @ModelField(targetType="String") String taskBody;
   private final @ModelField(targetType="AWSDateTime", isRequired = true) Temporal.DateTime taskDateCreated;
   private final @ModelField(targetType="TaskStatusEnum") TaskStatusEnum taskStatus;
   private final @ModelField(targetType="Team") @BelongsTo(targetName = "teamID", type = Team.class) Team team;
+  private final @ModelField(targetType="String") String associatedImageS3Key;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
@@ -65,6 +67,10 @@ public final class Task implements Model {
       return team;
   }
   
+  public String getAssociatedImageS3Key() {
+      return associatedImageS3Key;
+  }
+  
   public Temporal.DateTime getCreatedAt() {
       return createdAt;
   }
@@ -73,13 +79,14 @@ public final class Task implements Model {
       return updatedAt;
   }
   
-  private Task(String id, String taskTitle, String taskBody, Temporal.DateTime taskDateCreated, TaskStatusEnum taskStatus, Team team) {
+  private Task(String id, String taskTitle, String taskBody, Temporal.DateTime taskDateCreated, TaskStatusEnum taskStatus, Team team, String associatedImageS3Key) {
     this.id = id;
     this.taskTitle = taskTitle;
     this.taskBody = taskBody;
     this.taskDateCreated = taskDateCreated;
     this.taskStatus = taskStatus;
     this.team = team;
+    this.associatedImageS3Key = associatedImageS3Key;
   }
   
   @Override
@@ -96,6 +103,7 @@ public final class Task implements Model {
               ObjectsCompat.equals(getTaskDateCreated(), task.getTaskDateCreated()) &&
               ObjectsCompat.equals(getTaskStatus(), task.getTaskStatus()) &&
               ObjectsCompat.equals(getTeam(), task.getTeam()) &&
+              ObjectsCompat.equals(getAssociatedImageS3Key(), task.getAssociatedImageS3Key()) &&
               ObjectsCompat.equals(getCreatedAt(), task.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), task.getUpdatedAt());
       }
@@ -110,6 +118,7 @@ public final class Task implements Model {
       .append(getTaskDateCreated())
       .append(getTaskStatus())
       .append(getTeam())
+      .append(getAssociatedImageS3Key())
       .append(getCreatedAt())
       .append(getUpdatedAt())
       .toString()
@@ -126,6 +135,7 @@ public final class Task implements Model {
       .append("taskDateCreated=" + String.valueOf(getTaskDateCreated()) + ", ")
       .append("taskStatus=" + String.valueOf(getTaskStatus()) + ", ")
       .append("team=" + String.valueOf(getTeam()) + ", ")
+      .append("associatedImageS3Key=" + String.valueOf(getAssociatedImageS3Key()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
@@ -151,6 +161,7 @@ public final class Task implements Model {
       null,
       null,
       null,
+      null,
       null
     );
   }
@@ -161,7 +172,8 @@ public final class Task implements Model {
       taskBody,
       taskDateCreated,
       taskStatus,
-      team);
+      team,
+      associatedImageS3Key);
   }
   public interface TaskTitleStep {
     TaskDateCreatedStep taskTitle(String taskTitle);
@@ -179,6 +191,7 @@ public final class Task implements Model {
     BuildStep taskBody(String taskBody);
     BuildStep taskStatus(TaskStatusEnum taskStatus);
     BuildStep team(Team team);
+    BuildStep associatedImageS3Key(String associatedImageS3Key);
   }
   
 
@@ -189,6 +202,7 @@ public final class Task implements Model {
     private String taskBody;
     private TaskStatusEnum taskStatus;
     private Team team;
+    private String associatedImageS3Key;
     @Override
      public Task build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -199,7 +213,8 @@ public final class Task implements Model {
           taskBody,
           taskDateCreated,
           taskStatus,
-          team);
+          team,
+          associatedImageS3Key);
     }
     
     @Override
@@ -234,6 +249,12 @@ public final class Task implements Model {
         return this;
     }
     
+    @Override
+     public BuildStep associatedImageS3Key(String associatedImageS3Key) {
+        this.associatedImageS3Key = associatedImageS3Key;
+        return this;
+    }
+    
     /**
      * @param id id
      * @return Current Builder instance, for fluent method chaining
@@ -246,13 +267,14 @@ public final class Task implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String taskTitle, String taskBody, Temporal.DateTime taskDateCreated, TaskStatusEnum taskStatus, Team team) {
+    private CopyOfBuilder(String id, String taskTitle, String taskBody, Temporal.DateTime taskDateCreated, TaskStatusEnum taskStatus, Team team, String associatedImageS3Key) {
       super.id(id);
       super.taskTitle(taskTitle)
         .taskDateCreated(taskDateCreated)
         .taskBody(taskBody)
         .taskStatus(taskStatus)
-        .team(team);
+        .team(team)
+        .associatedImageS3Key(associatedImageS3Key);
     }
     
     @Override
@@ -278,6 +300,11 @@ public final class Task implements Model {
     @Override
      public CopyOfBuilder team(Team team) {
       return (CopyOfBuilder) super.team(team);
+    }
+    
+    @Override
+     public CopyOfBuilder associatedImageS3Key(String associatedImageS3Key) {
+      return (CopyOfBuilder) super.associatedImageS3Key(associatedImageS3Key);
     }
   }
   
