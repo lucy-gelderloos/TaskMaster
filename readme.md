@@ -2,6 +2,16 @@
 
 A task management app
 
+## Day 10
+
+- Implemented Amplify Storage
+  - Users can add an image to a task
+  - The image is saved to Amplify S3
+  - The image's S3 key is associated with the task when it is saved to the database
+
+![Add Task page day 10](./screenshots/add-task-day-10.png)
+![Add Image page day 10](./screenshots/add-task-day-10.png)
+
 ## Day 9
 
 - Implemented authentication with Amplify Cognito
