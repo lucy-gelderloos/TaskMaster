@@ -31,6 +31,7 @@ public class AddTaskActivity extends AppCompatActivity {
     SharedPreferences preferences;
     Spinner taskTeamSpinner = null;
     CompletableFuture<List<Team>> teamFuture = null;
+    String s3ImageKey = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +42,16 @@ public class AddTaskActivity extends AppCompatActivity {
 
         setUpStateSpinner();
         setUpTeamSpinner();
+        setUpImageButton();
         setUpSubmitButton();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        Intent intent = getIntent();
+        s3ImageKey = intent.getStringExtra("S3ImageKey");
     }
 
     private void setUpStateSpinner(){
@@ -107,12 +112,14 @@ public class AddTaskActivity extends AppCompatActivity {
             String taskBody = ((EditText) findViewById(R.id.editTextAddTaskTaskBody)).getText().toString();
             String currentDateString = com.amazonaws.util.DateUtils.formatISO8601Date(new Date());
 
+
             Task newTask = Task.builder()
                     .taskTitle(taskTitle)
                     .taskDateCreated(new Temporal.DateTime(currentDateString))
                     .taskBody(taskBody)
                     .taskStatus((TaskStatusEnum) taskStateSpinner.getSelectedItem())
                     .team(selectedTeam)
+                    .associatedImageS3Key(s3ImageKey)
                     .build();
 
             Amplify.API.mutate(
@@ -123,6 +130,13 @@ public class AddTaskActivity extends AppCompatActivity {
 
             Intent goToMainActivity = new Intent(AddTaskActivity.this, MainActivity.class);
             startActivity(goToMainActivity);
+        });
+    }
+
+    private void setUpImageButton(){
+        findViewById(R.id.ButtonAddTaskAddImage).setOnClickListener(v -> {
+            Intent goToAddImageActivity = new Intent(AddTaskActivity.this, ImageTaskActivity.class);
+            startActivity(goToAddImageActivity);
         });
     }
 
