@@ -12,19 +12,12 @@ subscription OnCreateTask {
       teamName
       tasks {
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnUpdateTask {
@@ -40,19 +33,12 @@ subscription OnUpdateTask {
       teamName
       tasks {
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnDeleteTask {
@@ -68,61 +54,12 @@ subscription OnDeleteTask {
       teamName
       tasks {
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnCreateNewTask {
-  onCreateNewTask {
-    id
-    taskTitle
-    taskBody
-    taskDateCreated
-    taskStatus
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnUpdateNewTask {
-  onUpdateNewTask {
-    id
-    taskTitle
-    taskBody
-    taskDateCreated
-    taskStatus
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnDeleteNewTask {
-  onDeleteNewTask {
-    id
-    taskTitle
-    taskBody
-    taskDateCreated
-    taskStatus
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnCreateTeam {
@@ -139,18 +76,11 @@ subscription OnCreateTeam {
         teamID
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnUpdateTeam {
@@ -167,18 +97,11 @@ subscription OnUpdateTeam {
         teamID
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnDeleteTeam {
@@ -195,17 +118,10 @@ subscription OnDeleteTeam {
         teamID
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }

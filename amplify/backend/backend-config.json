@@ -1,6 +1,6 @@
 {
   "api": {
-    "taskmastertest": {
+    "taskmaster": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -9,22 +9,16 @@
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 30,
-              "apiKeyExpirationDate": "2022-10-29T04:55:27.603Z",
-              "description": "api key description"
+              "apiKeyExpirationDays": 7
             }
           },
-          "additionalAuthenticationProviders": [
-            {
-              "authenticationType": "AWS_IAM"
-            }
-          ]
+          "additionalAuthenticationProviders": []
         }
       }
     }
   },
   "auth": {
-    "taskmastertest991aabdf": {
+    "taskmaster33c055fb": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],

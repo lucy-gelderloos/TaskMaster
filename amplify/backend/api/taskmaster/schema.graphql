@@ -8,14 +8,6 @@ type Task @model @auth(rules: [{allow: public}]) {
   team: Team @belongsTo(fields: ["teamID"])
 }
 
-type NewTask @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  taskTitle: String!
-  taskBody: String
-  taskDateCreated: AWSDateTime!
-  taskStatus: TaskStatusEnum
-}
-
 type Team @model @auth(rules: [{allow: public}]) {
   id: ID!
   teamName: String!
@@ -28,4 +20,3 @@ enum TaskStatusEnum {
   Active
   Complete
 }
- 
