@@ -17,6 +17,9 @@ subscription OnCreateTask {
       updatedAt
     }
     associatedImageS3Key
+    location
+    latitude
+    longitude
     createdAt
     updatedAt
   }
@@ -39,6 +42,9 @@ subscription OnUpdateTask {
       updatedAt
     }
     associatedImageS3Key
+    location
+    latitude
+    longitude
     createdAt
     updatedAt
   }
@@ -61,6 +67,9 @@ subscription OnDeleteTask {
       updatedAt
     }
     associatedImageS3Key
+    location
+    latitude
+    longitude
     createdAt
     updatedAt
   }
@@ -78,6 +87,9 @@ subscription OnCreateTeam {
         taskStatus
         teamID
         associatedImageS3Key
+        location
+        latitude
+        longitude
         createdAt
         updatedAt
       }
@@ -100,6 +112,9 @@ subscription OnUpdateTeam {
         taskStatus
         teamID
         associatedImageS3Key
+        location
+        latitude
+        longitude
         createdAt
         updatedAt
       }
@@ -122,6 +137,9 @@ subscription OnDeleteTeam {
         taskStatus
         teamID
         associatedImageS3Key
+        location
+        latitude
+        longitude
         createdAt
         updatedAt
       }

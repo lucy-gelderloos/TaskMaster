@@ -2,6 +2,15 @@
 
 A task management app
 
+## Day 11
+
+- Added location
+  - Asks permission to access user's location
+  - Associates user's current location with task when created
+  - Displays latitude and longitude on task detail page (if lat & lon are not available, value is null)
+
+![Task Detail page day 11](./screenshots/task-detail-day-11.png)
+
 ## Day 10
 
 - Implemented Amplify Storage

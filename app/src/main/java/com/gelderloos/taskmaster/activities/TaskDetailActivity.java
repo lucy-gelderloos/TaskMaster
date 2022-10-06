@@ -29,6 +29,8 @@ public class TaskDetailActivity extends AppCompatActivity {
     public static final String TASK_BODY_EXTRA_TAG = "taskBody";
     public static final String TASK_STATE_EXTRA_TAG = "taskState";
     public static final String TASK_IMAGE_EXTRA_TAG = "taskImageS3Key";
+    public static final String TASK_LATITUDE_EXTRA_TAG = "taskLatitude";
+    public static final String TASK_LONGITUDE_EXTRA_TAG = "taskLongitude";
 
     String imageS3Key = "";
 
@@ -47,6 +49,11 @@ public class TaskDetailActivity extends AppCompatActivity {
         String state = intent.getStringExtra("taskState");
         TextView taskState = findViewById(R.id.textViewTaskDetailState);
         taskState.setText("Status: " + state);
+        String locationString = "Lat: " + intent.getStringExtra("taskLatitude") + ", Lon: " + intent.getStringExtra("taskLongitude");
+        TextView taskLocation = findViewById(R.id.textViewTaskDetailLocation);
+        taskLocation.setText(locationString);
+
+
         imageS3Key = intent.getStringExtra("taskImageS3Key");
 
         setUpTaskImageView();

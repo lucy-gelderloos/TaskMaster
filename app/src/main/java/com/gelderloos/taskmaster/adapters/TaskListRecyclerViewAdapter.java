@@ -39,6 +39,8 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
         String taskBody = tasks.get(position).getTaskBody();
         taskFragmentTaskTitleTextView.setText(position + 1 + ". " + taskTitle + "\n" + taskBody + "\n");
         String taskState = tasks.get(position).getTaskStatus().toString();
+        String taskLatitude = tasks.get(position).getLatitude();
+        String taskLongitude = tasks.get(position).getLongitude();
         String taskImageS3Key = tasks.get(position).getAssociatedImageS3Key();
 
         View taskViewHolder = holder.itemView;
@@ -47,6 +49,8 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
             goToTaskDetail.putExtra(TaskDetailActivity.TASK_TITLE_EXTRA_TAG, taskTitle);
             goToTaskDetail.putExtra(TaskDetailActivity.TASK_BODY_EXTRA_TAG, taskBody);
             goToTaskDetail.putExtra(TaskDetailActivity.TASK_STATE_EXTRA_TAG, taskState);
+            goToTaskDetail.putExtra(TaskDetailActivity.TASK_LATITUDE_EXTRA_TAG, taskLatitude);
+            goToTaskDetail.putExtra(TaskDetailActivity.TASK_LONGITUDE_EXTRA_TAG, taskLongitude);
             goToTaskDetail.putExtra(TaskDetailActivity.TASK_IMAGE_EXTRA_TAG, taskImageS3Key);
             callingActivity.startActivity(goToTaskDetail);
         });
