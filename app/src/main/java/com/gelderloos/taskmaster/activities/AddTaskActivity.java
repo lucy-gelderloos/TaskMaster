@@ -42,6 +42,8 @@ public class AddTaskActivity extends AppCompatActivity {
     CompletableFuture<List<Team>> teamFuture = null;
     String s3ImageKey = "";
     private FusedLocationProviderClient fusedLocationClient;
+    String currentLatitude = null;
+    String currentLongitude = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +65,8 @@ public class AddTaskActivity extends AppCompatActivity {
            if(location == null) {
                Log.e(Tag, "Location callback was null!");
            }
-           String currentLatitude = Double.toString(location.getLatitude());
-           String currentLongitude = Double.toString(location.getLongitude());
+           currentLatitude = Double.toString(location.getLatitude());
+           currentLongitude = Double.toString(location.getLongitude());
            Log.i(Tag, "Our latitude: " + location.getLatitude());
            Log.i(Tag, "Our longitude: " + location.getLongitude());
         });
@@ -72,6 +74,7 @@ public class AddTaskActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
+
         fusedLocationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, new CancellationToken() {
             @NonNull
             @Override
@@ -87,7 +90,8 @@ public class AddTaskActivity extends AppCompatActivity {
             if(location == null) {
                 Log.e(Tag, "Location callback was null!");
             }
-            Log.i(Tag, "Our latitude: " + location.getLatitude());
+            currentLatitude = Double.toString(location.getLatitude());
+            currentLongitude = Double.toString(location.getLongitude());Log.i(Tag, "Our latitude: " + location.getLatitude());
             Log.i(Tag, "Our longitude: " + location.getLongitude());
         });
 
@@ -159,11 +163,9 @@ public class AddTaskActivity extends AppCompatActivity {
 
             Team selectedTeam = teams.stream().filter(t -> t.getTeamName().equals(selectedTeamString)).findAny().orElseThrow(RuntimeException::new);
 
-
             String taskTitle = ((EditText) findViewById(R.id.editTextAddTaskTaskTitle)).getText().toString();
             String taskBody = ((EditText) findViewById(R.id.editTextAddTaskTaskBody)).getText().toString();
             String currentDateString = com.amazonaws.util.DateUtils.formatISO8601Date(new Date());
-
 
             Task newTask = Task.builder()
                     .taskTitle(taskTitle)
@@ -172,6 +174,8 @@ public class AddTaskActivity extends AppCompatActivity {
                     .taskStatus((TaskStatusEnum) taskStateSpinner.getSelectedItem())
                     .team(selectedTeam)
                     .associatedImageS3Key(s3ImageKey)
+                    .latitude(currentLatitude)
+                    .longitude(currentLongitude)
                     .build();
 
             Amplify.API.mutate(

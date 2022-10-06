@@ -7,6 +7,9 @@ type Task @model @auth(rules: [{allow: public}]) {
   teamID: ID! @index(name: "byTeam")
   team: Team @belongsTo(fields: ["teamID"])
   associatedImageS3Key: String
+  location: String
+  latitude: String
+  longitude: String
 }
 
 type Team @model @auth(rules: [{allow: public}]) {
